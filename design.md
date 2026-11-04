@@ -146,8 +146,17 @@ legends, tooltips, and drill selectors. Do not substitute other glyphs.
 ### 6.2 Artwork
 
 - Art is a `string[]` of equal-length rows, rendered in a `<pre class="ascii">`
-  with `white-space: pre` and `aria-hidden`.
+  with `white-space: pre` and `aria-hidden` (timed drills may render the frame
+  instantly with `instant` so a challenge is never shown as blank noise).
 - Person and Action art: **13 wide × 7 tall** (`ART_W` / `ART_H`).
+- Person: procedural portrait from the tens digit (hair, fringe, collar) and
+  ones digit (eyes, nose, mouth).
+- Action: procedural stick figure from one of ten poses, plus seeded motion FX
+  and a ground character.
+- Object: one of ten seeded silhouettes chosen by the tens digit (orb, bottle,
+  bell, key, rocket, lantern, cup, hammer, hourglass, ring), shaded by the ones
+  digit and dotted with a spark on high digits. All objects share the 13×7
+  canvas but must be distinguishable at 7px.
 - Character ramps for shading: ` . : ░ ▒ ▓ █` (light → heavy).
 - Motion FX characters: `* + . = - ~ < > / # % @ $ ! ? o O 0 \ | ^ \``.
 - Ground characters: `_ = ~ . - ^ # :`.
@@ -215,16 +224,28 @@ size; reserve the character width.
 
 ### Drill selector
 Three framed tiles in a row. Each shows a compact ASCII motif that *is* the
-explanation (e.g. `(o_o) → ##`, `## → (o_o)`, `▤ ▤ ▤`). The label is a
-tooltip, not a visible caption. Active tile: amber edge + amber/8 wash +
-`aria-pressed`. Inactive: cream/10 edge, 60% art opacity, hover raises art to
-100% and the edge to amber/35.
+explanation: `(o_o)▸##` (decode), `##▸(o_o)` (encode), and a two-row
+`▤▤▤ / ▤▤▤` reel. Role colors carry the meaning (person amber, digits cream,
+reel amber/sage/rust). The name is a tooltip, not a visible caption. Active
+tile: amber edge + amber/8 wash + `aria-pressed`. Inactive: cream/10 edge, 55%
+opacity, hover raises opacity and the edge to amber/35.
 
 ### HUD
 A single quiet rail above the stage: elapsed time as tabular digits, a streak
-of five recent `●`/`○` marks, and a best-score bar (`▰▰▰▱▱`). No boxes, no
-labels larger than 10px. Values that change every frame (timer) sit at
-cream/50; the current streak is the only amber element.
+of five recent result marks (`●` hit, `╳` miss, `○` unused), and a
+personal-best score bar (`▰▰▰▱▱`). No boxes, no labels larger than 10px.
+Values that change every frame (timer) sit at cream/50; the current streak is
+the only amber element. The timer runs only while the answer is being entered
+(and freezes for the feedback hold).
+
+### Encode options
+Three rows, one per role, each with four 7px art tiles. The role glyph sits in
+a fixed 32px gutter; the tiles form a four-column contact strip. Words are
+visible at 55% under each drawing and rise to 100% on hover/focus; the number
+key (1–4) sits in the corner. Selected: role-color edge + role/9 wash. On
+feedback: the correct tile gets a sage edge, a selected wrong tile gets a rust
+edge and shakes. All words stay in the DOM and the tile's `aria-label` is
+`Person: …`, `Action: …`, or `Object: …`.
 
 ---
 
@@ -247,17 +268,19 @@ Named animations (all in `index.css`):
 - `grain`, `flicker`, `scratch` — ambient film FX (fixed overlays).
 - `projector-flicker` — subtle gate brightness instability.
 - `shake` — wrong-answer 3px lateral, 0.35s, then rest.
-- `pulse-correct` — one sage halo bloom on a correct segment.
+- `segHit` — one sage wash blooms across a correct digit, 0.5s.
+- `drain` — reel reveal timer, a 1px amber rule scaling from 1 to 0.
 
 Rules:
 
 - Stagger lists by 55ms per item (cards), 120–180ms per role inside a frame.
   Cap the visible stagger at 12 items; do not animate the whole 200-frame reel.
 - Art develops on scroll into view (IntersectionObserver, threshold 0.2) and
-  re-develops on hover at 420ms.
+  re-develops on hover at 420ms. Timed drill art (reel frames, encode options,
+  prompts) renders instantly so the clock never starts on a blank tile.
 - Durations never exceed ~900ms for a response to input.
-- The projector auto-advance is 3600ms; trainer reveal timing is 900ms per
-  feedback state and 1500ms per reel frame (slow enough to encode).
+- The projector auto-advance is 3600ms; trainer reveal timing is 1000ms per
+  feedback hold and 2000ms per reel frame (slow enough to encode).
 - Respect `prefers-reduced-motion`: remove ambient overlay animation, develop
   instantly, keep state changes immediate. Never rely on motion alone to
   communicate correctness.
@@ -274,8 +297,9 @@ Rules:
   arrows, and answer-side art live behind it. Touch users must get the same
   information through focus/click, never hover only.
 - **Keyboard**: `Esc` closes overlays; `←`/`→` move frames; `Space` toggles
-  projection; `Enter` confirms; `1–4` choose options; `j`/`k` move between
-  frames (trainer and reel). Focus is always visible as a 1px amber ring.
+  projection; `Enter` arms a drill, confirms, or skips feedback; `1–4` choose
+  encode options for the first unfilled role. Focus is always visible as a 1px
+  amber ring.
 - **Sound** is not yet implemented; if added it must default muted, be a
   mechanical click/shutter, and never carry essential feedback.
 
@@ -298,29 +322,38 @@ Rules:
 ## 11. Trainer patterns
 
 The trainer is a **console**, not a page: one stage, one challenge, one input.
+Entering the trainer hides the site header so the console owns the viewport;
+the tab rail and the console both align to `max-w-4xl`.
 
 Phases: `ready → show → input → feedback → (next) → summary`.
 
-- **Ready**: a large ASCII motif centred on the gate, a blinking `▌`, and a
-  single amber action (tooltip `arm · ↵`). No instructions paragraph.
-- **Show**: digits and/or art appear with `advance`; a thin progress bar
-  drains under the gate for timed reveals. Never show the answer while the
-  user is meant to recall it.
-- **Input**: the stage keeps the prompt (words + art for decode, digits for
-  encode, empty reels for sequence); segments receive focus automatically.
-  Auto-submit when all slots are filled. `Backspace` edits; `Enter` submits
-  early if complete.
-- **Feedback**: correct segments turn sage, wrong turn rust and shake; the
-  full correct answer appears at the stage bottom in role colors. Hold 900ms,
+- **Ready**: a looping countdown-leader ASCII motif (`3 → 2 → 1`) with a static
+  amber `▶` and the tiny `arm · ↵` hint. The whole stage is the button. No
+  instructions paragraph.
+- **Show** (reel only): three frames advance every 2000ms with `advance`; a
+  1px amber rule drains under the frame. Digits, role art, and words are all
+  visible while encoding. Never show digits while the user is meant to recall
+  them.
+- **Input**: decode keeps words + art and hides digits; encode keeps digits and
+  asks for one option per role (three rows of four tiles); reel shows three
+  rows of empty digit segments. An invisible numeric field overlays the
+  segments, so tapping anywhere on them opens the keyboard. Auto-submit when
+  all slots are filled. `Enter` submits early when complete.
+- **Feedback**: correct digits turn sage and bloom; wrong digits turn rust and
+  shake. The full expected answer appears in role colors only when the rep was
+  wrong (encode always reinforces with the correct word triple). Hold 1000ms,
   then advance automatically. `Enter` skips the hold.
-- **Summary**: after a session (10 decode/encode reps, 5 reel reps), the stage
-  shows the score as a block bar, best streak, and personal best. Two actions:
-  replay (`↻`) and change drill (`◂`). Nothing else.
+- **Summary**: after a session (10 decode reps, 10 encode reps, 5 reel reps),
+  the stage shows the score as a block bar, the session's best streak, and the
+  personal best. The only action is replay (`↻`); the drill selector stays
+  available in the console rail. Nothing else.
 
-Scoring: correctness is objective (exact digits / exact triple). Per-digit
-comparison drives feedback even when the rep is scored as a single unit.
-Sessions persist to `localStorage` under `pao-trainer-v1`; never migrate
-silently — version the key if the shape changes.
+Scoring: correctness is objective (exact digits / exact three picks). Per-digit
+comparison drives decode and reel feedback even when the rep is scored as a
+single unit. Sessions persist to `localStorage` under `pao-trainer-v1` (attempts,
+correct, best streak, best score, last five results per drill); never migrate
+silently — version the key if the shape changes. Changing tabs ends the live
+session but keeps the stats.
 
 ---
 

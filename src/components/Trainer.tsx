@@ -392,8 +392,8 @@ export function Trainer() {
           aria-label={`arm ${DRILL_NAMES[drill]} drill`}
           className="group flex flex-col items-center gap-4 outline-none focus-visible:ring-1 focus-visible:ring-amber"
         >
-          <AsciiAnim frames={LEADER_FRAMES} fps={1.1} className="role-P opacity-80" style={{ ['--fs' as string]: '12px' }} />
-          <span className="blink text-sm text-amber">▶</span>
+          <AsciiAnim frames={LEADER_FRAMES} fps={1.1} className="role-P opacity-80" style={{ ['--fs' as string]: '13px' }} />
+          <span className="text-lg text-amber transition-transform duration-300 group-hover:scale-110">▶</span>
           <span className="edge transition-colors group-hover:text-amber">arm · ↵</span>
         </button>
       )
@@ -545,9 +545,9 @@ export function Trainer() {
               />
             )}
           </div>
-          {result && (
+          {result && !result.hit && (
             <div className="fade-up flex flex-wrap items-center justify-center gap-2 text-[11px]">
-              <span className={result.hit ? 'text-sage' : 'text-rust'}>{result.hit ? '✓' : '✕'}</span>
+              <span className="text-rust">✕</span>
               <AnswerDigits value={result.expected} />
             </div>
           )}
@@ -585,7 +585,7 @@ export function Trainer() {
         <span className="edge">
           {phase === 'feedback' ? <span className={result?.hit ? 'text-sage' : 'text-rust'}>{result?.hit ? '✓ exact' : '✕'}</span> : '◂ type six digits ▸'}
         </span>
-        {result && phase === 'feedback' && (
+        {result && phase === 'feedback' && !result.hit && (
           <div className="fade-up -mt-3">
             <AnswerDigits value={result.expected} />
           </div>

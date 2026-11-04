@@ -416,6 +416,12 @@ body::before {
 }
 .seg[data-mark="hit"] {
   color: var(--sage);
+  animation: segHit 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+@keyframes segHit {
+  0% { background: rgba(127, 181, 166, 0); }
+  35% { background: rgba(127, 181, 166, 0.16); }
+  100% { background: rgba(127, 181, 166, 0); }
 }
 .seg[data-mark="hit"]::after {
   background: var(--sage);
@@ -541,5 +547,6 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .fx-grain, .fx-flicker, .fx-scratch, .blink, .projector-flicker { animation: none; }
   .seg[data-mark="miss"], .option[data-miss] { animation: none; }
+  .seg[data-mark="hit"] { animation: none; }
   .drain { animation-duration: 0.01s; }
 }

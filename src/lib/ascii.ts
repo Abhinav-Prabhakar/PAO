@@ -93,25 +93,129 @@ export function actionArt(n: number): string[] {
   return rows
 }
 
-/* ───────────── OBJECT: symmetric shaded artifact ───────────── */
+/* ───────────── OBJECT: distinct silhouettes, seeded variation ───────────── */
 
-const RAMP = [' ', '.', ':', '░', '▒', '▓', '█']
+const OBJECT_TEMPLATES: string[][] = [
+  // 0 orb
+  [
+    '  .#####.  ',
+    ' #▒▒▒▒▒▒▒# ',
+    '#▒▒▓▓▓▒▒▒#',
+    '#▒▓▓██▓▒▒#',
+    '#▒▒▓▓▓▒▒▒#',
+    ' #▒▒▒▒▒▒▒# ',
+    "  '#####'  ",
+  ],
+  // 1 bottle
+  [
+    '    .#.    ',
+    '    #▒#    ',
+    '    #▒#    ',
+    '  .##▒##.  ',
+    ' #▒▒▒▒▒▒▒# ',
+    ' #▒▓▓▓▓▓▒# ',
+    "  '#####'  ",
+  ],
+  // 2 bell
+  [
+    '   .###.   ',
+    '  .#▒▒▒#.  ',
+    ' #▒▒▒▒▒▒▒# ',
+    '#▒▒▓▓▓▒▒▒#',
+    '#▒▒▒▒▒▒▒▒▒#',
+    " '#######' ",
+    '    ##     ',
+  ],
+  // 3 key
+  [
+    '  .---.    ',
+    ' #▒▒▒#     ',
+    ' #▒▒▒#     ',
+    "  '---'####",
+    '       #  #',
+    '       ####',
+    '           ',
+  ],
+  // 4 rocket
+  [
+    '     #     ',
+    '    #▒#    ',
+    '   #▒▒▒#   ',
+    '  #▒▓▓▓▒#  ',
+    ' #▒▓██▓▒# ',
+    ' #▒▓▓▓▒#/\\ ',
+    "  '###'/   ",
+  ],
+  // 5 lantern
+  [
+    '    /^\\    ',
+    '   /▒▒▒\\   ',
+    '  /▒▒▒▒▒\\  ',
+    ' /▒▒▒▒▒▒▒\\ ',
+    ' |▒▓▓▓▓▓▒| ',
+    ' |▒▒▒▒▒▒▒| ',
+    " '-------' ",
+  ],
+  // 6 cup
+  [
+    ' .-------. ',
+    ' |▒▒▒▒▒▒▒| ',
+    ' |▒▓▓▓▓▓▒|─┐',
+    '  \\▒▒▒▒▒/──┘',
+    '   \\▒▒▒/   ',
+    "    '-'    ",
+    '           ',
+  ],
+  // 7 hammer
+  [
+    '  .#####.  ',
+    ' #▒▒▒▒▒▒▒# ',
+    ' #▒▒▒▒▒▒▒# ',
+    "  '##▒##'  ",
+    '     #▒#   ',
+    '     #▒#   ',
+    "     '#'   ",
+  ],
+  // 8 hourglass
+  [
+    ' ######### ',
+    '  \\▒▒▒▒▒/  ',
+    '   \\▒▒▒/   ',
+    '    \\▒/    ',
+    '   /▒▒▒\\   ',
+    '  /▒▒▒▒▒\\  ',
+    ' ######### ',
+  ],
+  // 9 ring
+  [
+    '   .---.   ',
+    '  /     \\  ',
+    ' |  .-.  | ',
+    ' | (▒▒▒) | ',
+    " |  '-'  | ",
+    '  \\     /  ',
+    "   '---'   ",
+  ],
+]
 
 export function objectArt(n: number): string[] {
+  const a = Math.floor(n / 10)
+  const b = n % 10
   const rng = mulberry32(n * 104729 + 7)
-  const rows: string[] = []
-  for (let r = 0; r < ART_H; r++) {
-    const half: string[] = []
-    for (let c = 0; c <= 6; c++) {
-      const dx = (c - 6) / 6.4
-      const dy = (r - 3) / 3.7
-      const d = Math.sqrt(dx * dx + dy * dy)
-      const v = 1.08 - d + (rng() - 0.5) * 0.75
-      const idx = v < 0.08 ? 0 : v < 0.22 ? 1 : v < 0.36 ? 2 : v < 0.52 ? 3 : v < 0.68 ? 4 : v < 0.84 ? 5 : 6
-      half.push(RAMP[idx])
+  const fill = b % 3 === 0 ? '▓' : b % 2 === 1 ? '░' : '▒'
+  const rows = OBJECT_TEMPLATES[a].map((row) => center(row, ART_W).slice(0, ART_W).replace(/▒/g, fill))
+
+  // late digits pick up a spark of light
+  const sparks = b >= 8 ? 2 : b >= 6 ? 1 : 0
+  for (let i = 0; i < sparks; i++) {
+    for (let tries = 0; tries < 8; tries++) {
+      const r = Math.floor(rng() * ART_H)
+      const c = Math.floor(rng() * ART_W)
+      if (rows[r][c] === ' ') {
+        rows[r] = rows[r].slice(0, c) + (b % 2 === 0 ? '+' : '*') + rows[r].slice(c + 1)
+        break
+      }
     }
-    const left = half.join('')
-    rows.push(left + left.slice(0, -1).split('').reverse().join(''))
   }
   return rows
 }

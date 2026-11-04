@@ -124,7 +124,10 @@ export default function App() {
       )}
 
       {/* ───────── toolbar ───────── */}
-      <nav className={`fade-up mb-6 flex items-center justify-between ${tab === 'trainer' ? 'mt-0' : 'mt-8'}`} style={{ animationDelay: '220ms' }}>
+      <nav
+        className={`fade-up mb-6 flex items-center justify-between ${tab === 'trainer' ? 'mx-auto mt-0 w-full max-w-4xl' : 'mt-8'}`}
+        style={{ animationDelay: '220ms' }}
+      >
         <div className="flex gap-2">
           <button className="btn" aria-pressed={tab === 'reel'} data-tip="reel" aria-label="reel" onClick={() => setTab('reel')}>
             ▤▤▤
