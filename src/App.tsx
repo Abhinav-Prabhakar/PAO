@@ -42,6 +42,7 @@ export default function App() {
       <Cursor />
 
       {/* ───────── header ───────── */}
+      {tab !== 'trainer' && (
       <header className="fade-up flex items-center justify-between gap-6">
         <div className="flex items-center gap-5">
           <AsciiAnim frames={REEL_FRAMES} fps={4} className="role-P" style={{ ['--fs' as string]: '7px' }} />
@@ -71,6 +72,7 @@ export default function App() {
           ))}
         </div>
       </header>
+      )}
 
       {/* ───────── input slate ───────── */}
       {tab !== 'trainer' && (
@@ -122,7 +124,7 @@ export default function App() {
       )}
 
       {/* ───────── toolbar ───────── */}
-      <nav className="fade-up mt-8 mb-6 flex items-center justify-between" style={{ animationDelay: '220ms' }}>
+      <nav className={`fade-up mb-6 flex items-center justify-between ${tab === 'trainer' ? 'mt-0' : 'mt-8'}`} style={{ animationDelay: '220ms' }}>
         <div className="flex gap-2">
           <button className="btn" aria-pressed={tab === 'reel'} data-tip="reel" aria-label="reel" onClick={() => setTab('reel')}>
             ▤▤▤

@@ -110,11 +110,18 @@ interface SegmentsProps {
   marks?: boolean[]
   cursor?: number | null
   size?: number
+  /** Accessible name for prompts where the digits are the content (encode). */
+  label?: string
 }
 
-function Segments({ value, length, marks, cursor = null, size = 40 }: SegmentsProps) {
+function Segments({ value, length, marks, cursor = null, size = 40, label }: SegmentsProps) {
   return (
-    <div className="flex items-end" aria-hidden>
+    <div
+      className="flex items-end"
+      role={label ? 'img' : undefined}
+      aria-label={label}
+      aria-hidden={label ? undefined : true}
+    >
       {Array.from({ length }, (_, i) => {
         const ch = value[i] ?? ''
         const mark = marks?.[i]
@@ -179,7 +186,7 @@ function Prompt({ p, role, size }: { p: Pao; role: Role; size: number }) {
       >
         {ROLES[role].glyph}
       </span>
-      <AsciiArt lines={cachedArt(role, p.n)} role={role} size={size} delay={80} />
+      <AsciiArt lines={cachedArt(role, p.n)} role={role} size={size} delay={80} instant />
       <span
         className={`max-w-[120px] truncate text-[10px] tracking-wide role-${role}`}
         style={{ textShadow: 'none' }}
@@ -385,7 +392,7 @@ export function Trainer() {
           aria-label={`arm ${DRILL_NAMES[drill]} drill`}
           className="group flex flex-col items-center gap-4 outline-none focus-visible:ring-1 focus-visible:ring-amber"
         >
-          <AsciiAnim frames={LEADER_FRAMES} fps={1.1} className="role-P opacity-80" style={{ ['--fs' as string]: '9px' }} />
+          <AsciiAnim frames={LEADER_FRAMES} fps={1.1} className="role-P opacity-80" style={{ ['--fs' as string]: '12px' }} />
           <span className="blink text-sm text-amber">▶</span>
           <span className="edge transition-colors group-hover:text-amber">arm · ↵</span>
         </button>
@@ -419,10 +426,7 @@ export function Trainer() {
       const correct = rep.triples[0]
       return (
         <div className="flex w-full max-w-3xl flex-col items-center gap-5">
-          <div className="flex flex-col items-center gap-1.5">
-            <Segments value={rep.digits} length={6} size={42} />
-            <span className="edge">digits</span>
-          </div>
+          <Segments value={rep.digits} length={6} size={44} label={`digits ${rep.digits}`} />
           <div className="flex w-full flex-col gap-2">
             {ROLE_ORDER.map((role, slot) => {
               const options = rep.options![slot]
@@ -436,7 +440,7 @@ export function Trainer() {
                   >
                     {ROLES[role].glyph}
                   </span>
-                  <div className="grid min-w-0 flex-1 grid-cols-2 gap-1.5 sm:grid-cols-4">
+                  <div className="grid min-w-0 flex-1 grid-cols-4 gap-1.5">
                     {options.map((p, i) => {
                       const isPicked = chosen?.n === p.n
                       const isCorrect = phase === 'feedback' && p.n === correct[slot].n
@@ -447,7 +451,7 @@ export function Trainer() {
                           onClick={() => pick(slot, p)}
                           disabled={phase !== 'input'}
                           aria-pressed={isPicked}
-                          aria-label={`${role} ${wordOf(role, p)}`}
+                          aria-label={`${ROLES[role].name}: ${wordOf(role, p)}`}
                           data-picked={isPicked ? '' : undefined}
                           data-correct={isCorrect ? '' : undefined}
                           data-miss={isMiss ? '' : undefined}
@@ -455,7 +459,7 @@ export function Trainer() {
                           style={{ ['--accent' as string]: ROLE_VAR[role] }}
                         >
                           <span className="keycap absolute top-1 right-1.5">{i + 1}</span>
-                          <AsciiArt lines={cachedArt(role, p.n)} role={role} size={6} delay={i * 40} />
+                          <AsciiArt lines={cachedArt(role, p.n)} role={role} size={7} delay={i * 40} instant />
                           <span
                             className={`w-full truncate text-center text-[8px] leading-none tracking-wide role-${role} opacity-55 transition-opacity group-hover:opacity-100`}
                             style={{ textShadow: 'none' }}

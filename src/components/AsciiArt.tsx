@@ -10,10 +10,12 @@ interface Props {
   size?: number
   delay?: number
   className?: string
+  /** Render the finished frame immediately instead of waiting for the viewport. */
+  instant?: boolean
 }
 
 /** ASCII art that "develops" like a photo: noise resolves cell by cell. */
-export function AsciiArt({ lines, role, size = 10, delay = 0, className = '' }: Props) {
+export function AsciiArt({ lines, role, size = 10, delay = 0, className = '', instant = false }: Props) {
   const ref = useRef<HTMLPreElement>(null)
   const raf = useRef(0)
   const timer = useRef<number>(0)
@@ -67,6 +69,10 @@ export function AsciiArt({ lines, role, size = 10, delay = 0, className = '' }: 
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    if (instant) {
+      el.textContent = lines.join('\n')
+      return
+    }
     el.textContent = lines.map((l) => l.replace(/./g, ' ')).join('\n')
     const io = new IntersectionObserver(
       (entries) => {
@@ -83,7 +89,7 @@ export function AsciiArt({ lines, role, size = 10, delay = 0, className = '' }: 
       cancelAnimationFrame(raf.current)
       clearTimeout(timer.current)
     }
-  }, [lines, develop, delay])
+  }, [lines, develop, delay, instant])
 
   return (
     <pre
