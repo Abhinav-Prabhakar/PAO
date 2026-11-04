@@ -7,7 +7,7 @@ const reduce = () => typeof window !== 'undefined' && window.matchMedia('(prefer
 interface Props {
   lines: string[]
   role: Role
-  size?: number
+  size?: number | string
   delay?: number
   className?: string
   /** Render the finished frame immediately instead of waiting for the viewport. */
@@ -97,7 +97,7 @@ export function AsciiArt({ lines, role, size = 10, delay = 0, className = '', in
       aria-hidden
       onMouseEnter={() => develop(420, 0)}
       className={`ascii role-${role} ${className}`}
-      style={{ ['--fs' as string]: `${size}px` }}
+      style={{ ['--fs' as string]: typeof size === 'number' ? `${size}px` : size }}
     />
   )
 }

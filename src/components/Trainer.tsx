@@ -136,7 +136,7 @@ function Segments({ value, length, marks, cursor = null, size = 40, label }: Seg
               fontSize: size,
               minWidth: size * 0.66,
               marginLeft: i > 0 && i % 2 === 0 ? size * 0.28 : 0,
-              color: ch && mark === undefined ? ROLE_VAR[role] : undefined,
+              color: ch && mark !== false ? ROLE_VAR[role] : undefined,
             }}
           >
             {ch ? ch : <span className="text-cream/15">·</span>}
@@ -176,7 +176,7 @@ function AnswerWords({ triple }: { triple: Triple }) {
 
 /* ───────────── stage pieces ───────────── */
 
-function Prompt({ p, role, size }: { p: Pao; role: Role; size: number }) {
+function Prompt({ p, role, size }: { p: Pao; role: Role; size: number | string }) {
   return (
     <div className="flex min-w-0 flex-col items-center gap-1.5">
       <span
@@ -459,7 +459,7 @@ export function Trainer() {
                           style={{ ['--accent' as string]: ROLE_VAR[role] }}
                         >
                           <span className="keycap absolute top-1 right-1.5">{i + 1}</span>
-                          <AsciiArt lines={cachedArt(role, p.n)} role={role} size={7} delay={i * 40} instant />
+                          <AsciiArt lines={cachedArt(role, p.n)} role={role} size="clamp(5px, 1.2vw, 7px)" delay={i * 40} instant />
                           <span
                             className={`w-full truncate text-center text-[8px] leading-none tracking-wide role-${role} opacity-55 transition-opacity group-hover:opacity-100`}
                             style={{ textShadow: 'none' }}
@@ -493,7 +493,7 @@ export function Trainer() {
             <Segments value={digitsOf(t)} length={6} size={36} />
             <div className="grid grid-cols-3 gap-4 sm:gap-10">
               {ROLE_ORDER.map((role, p) => (
-                <Prompt key={role} p={t[p]} role={role} size={11} />
+                <Prompt key={role} p={t[p]} role={role} size="clamp(8px, 2.2vw, 11px)" />
               ))}
             </div>
             <div className="h-px w-44 bg-cream/10">
@@ -564,7 +564,7 @@ export function Trainer() {
       <div className="flex flex-col items-center gap-5">
         <div className="grid grid-cols-3 gap-3 sm:gap-9">
           {ROLE_ORDER.map((role, p) => (
-            <Prompt key={role} p={t[p]} role={role} size={13} />
+            <Prompt key={role} p={t[p]} role={role} size="clamp(9px, 2.7vw, 13px)" />
           ))}
         </div>
         <div className="relative">

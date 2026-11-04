@@ -43,84 +43,84 @@ export default function App() {
 
       {/* ───────── header ───────── */}
       {tab !== 'trainer' && (
-      <header className="fade-up flex items-center justify-between gap-6">
-        <div className="flex items-center gap-5">
-          <AsciiAnim frames={REEL_FRAMES} fps={4} className="role-P" style={{ ['--fs' as string]: '7px' }} />
-          <div className="flex gap-2.5">
-            {LOGO.map(([r, art]) => (
-              <pre
+        <header className="fade-up flex items-center justify-between gap-6">
+          <div className="flex items-center gap-5">
+            <AsciiAnim frames={REEL_FRAMES} fps={4} className="role-P" style={{ ['--fs' as string]: '7px' }} />
+            <div className="flex gap-2.5">
+              {LOGO.map(([r, art]) => (
+                <pre
+                  key={r}
+                  className={`ascii role-${r}`}
+                  style={{ ['--fs' as string]: '30px', lineHeight: 1, fontWeight: 800 }}
+                >
+                  {art}
+                </pre>
+              ))}
+            </div>
+          </div>
+  
+          <div className="flex items-center gap-4 text-xs sm:gap-6">
+            {ROLE_ORDER.map((r) => (
+              <span
                 key={r}
-                className={`ascii role-${r}`}
-                style={{ ['--fs' as string]: '30px', lineHeight: 1, fontWeight: 800 }}
+                data-tip={ROLES[r].name}
+                className={`role-${r} tracking-[0.2em] opacity-80 transition-opacity hover:opacity-100`}
+                style={{ textShadow: 'none' }}
               >
-                {art}
-              </pre>
+                {ROLES[r].glyph}
+              </span>
             ))}
           </div>
-        </div>
-
-        <div className="flex items-center gap-4 text-xs sm:gap-6">
-          {ROLE_ORDER.map((r) => (
-            <span
-              key={r}
-              data-tip={ROLES[r].name}
-              className={`role-${r} tracking-[0.2em] opacity-80 transition-opacity hover:opacity-100`}
-              style={{ textShadow: 'none' }}
-            >
-              {ROLES[r].glyph}
-            </span>
-          ))}
-        </div>
-      </header>
+        </header>
       )}
 
       {/* ───────── input slate ───────── */}
       {tab !== 'trainer' && (
-      <section className="slate fade-up relative mt-8 px-4 py-4" style={{ animationDelay: '120ms' }}>
-        <span className="corner tl -top-1 -left-1">┌</span>
-        <span className="corner tr -top-1 -right-1">┐</span>
-        <span className="corner bl -bottom-1 -left-1">└</span>
-        <span className="corner br -right-1 -bottom-1">┘</span>
-
-        <div className="flex gap-3">
-          <AsciiAnim frames={SPIN} fps={8} className="mt-[3px] w-3 text-amber" style={{ ['--fs' as string]: '14px' }} />
-          <textarea
-            value={digits}
-            onChange={(e) => set(e.target.value)}
-            onPaste={(e) => {
-              e.preventDefault()
-              const t = e.clipboardData.getData('text')
-              const el = e.currentTarget
-              set(digits.slice(0, el.selectionStart) + t + digits.slice(el.selectionEnd))
-            }}
-            spellCheck={false}
-            rows={3}
-            placeholder="3 1 4 1 5 9 …"
-            aria-label="digits"
-            className="h-[86px] w-full resize-none bg-transparent text-[15px] leading-6 tracking-[0.28em] break-all text-cream outline-none"
-          />
-        </div>
-
-        <div className="mt-3 flex items-center justify-between gap-4 border-t border-cream/10 pt-3">
-          <div className="flex items-center gap-4 text-xs text-cream/50">
-            <span data-tip="digits" className="tabular-nums text-cream/80">
-              {String(digits.length).padStart(4, '0')}
-            </span>
-            <span data-tip="next frame" className="tracking-[0.15em] text-amber">
-              {'▰'.repeat(fill)}
-              <span className="text-cream/20">{'▱'.repeat(6 - fill)}</span>
-            </span>
-            <span data-tip="frames" className="tabular-nums text-cream/80">
-              ▤ {chunks.length}
-            </span>
+        <section className="slate fade-up relative mt-8 px-4 py-4" style={{ animationDelay: '120ms' }}>
+          <span className="corner tl -top-1 -left-1">┌</span>
+          <span className="corner tr -top-1 -right-1">┐</span>
+          <span className="corner bl -bottom-1 -left-1">└</span>
+          <span className="corner br -right-1 -bottom-1">┘</span>
+  
+          <div className="flex gap-3">
+            <AsciiAnim frames={SPIN} fps={8} className="mt-[3px] w-3 text-amber" style={{ ['--fs' as string]: '14px' }} />
+            <textarea
+              value={digits}
+              onChange={(e) => set(e.target.value)}
+              onPaste={(e) => {
+                e.preventDefault()
+                const t = e.clipboardData.getData('text')
+                const el = e.currentTarget
+                set(digits.slice(0, el.selectionStart) + t + digits.slice(el.selectionEnd))
+              }}
+              spellCheck={false}
+              rows={3}
+              placeholder="3 1 4 1 5 9 …"
+              aria-label="digits"
+              className="h-[86px] w-full resize-none bg-transparent text-[15px] leading-6 tracking-[0.28em] break-all text-cream outline-none"
+            />
           </div>
-          <div className="flex gap-2">
-            <button className="btn" data-tip="π" aria-label="pi digits" onClick={() => set(PI_DIGITS)}>π</button>
-            <button className="btn" data-tip="random" aria-label="random digits" onClick={() => set(randomDigits(96))}>⚄</button>
-            <button className="btn" data-tip="clear" aria-label="clear" onClick={() => set('')}>✕</button>
+  
+          <div className="mt-3 flex items-center justify-between gap-4 border-t border-cream/10 pt-3">
+            <div className="flex items-center gap-4 text-xs text-cream/50">
+              <span data-tip="digits" className="tabular-nums text-cream/80">
+                {String(digits.length).padStart(4, '0')}
+              </span>
+              <span data-tip="next frame" className="tracking-[0.15em] text-amber">
+                {'▰'.repeat(fill)}
+                <span className="text-cream/20">{'▱'.repeat(6 - fill)}</span>
+              </span>
+              <span data-tip="frames" className="tabular-nums text-cream/80">
+                ▤ {chunks.length}
+              </span>
+            </div>
+            <div className="flex gap-2">
+              <button className="btn" data-tip="π" aria-label="pi digits" onClick={() => set(PI_DIGITS)}>π</button>
+              <button className="btn" data-tip="random" aria-label="random digits" onClick={() => set(randomDigits(96))}>⚄</button>
+              <button className="btn" data-tip="clear" aria-label="clear" onClick={() => set('')}>✕</button>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
       )}
 
       {/* ───────── toolbar ───────── */}

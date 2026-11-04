@@ -114,6 +114,9 @@ Everything — UI, art, digits, prose — is monospace. This is deliberate.
 
 - Page shell: `max-w-6xl`, horizontal padding `px-4` → `sm:px-8`, top `pt-8`,
   bottom `pb-16`.
+- **Trainer focus mode**: the trainer tab removes the site header entirely and
+  aligns its tab rail and console to a shared `max-w-4xl` column. The drill owns
+  the viewport; brand chrome returns when you leave the tab.
 - Vertical rhythm is generous: sections are separated by `mt-8` / `mt-16`.
   Empty space is part of the design; do not fill it.
 - Card grid: `repeat(auto-fill, minmax(296px, 1fr))`, `gap-5`.
@@ -218,9 +221,9 @@ amber/10 fill.
 Introduced with the trainer. A monospaced digit slot with a 1px `cream/12`
 baseline, no box. Empty slots show a dim `·`; the active slot has an amber
 underline that grows in. Filled slots use the role color (every two digits
-share the role of their position). Correct → sage underline + soft sage
-background pulse. Wrong → rust underline + `shake`. Segments never jump in
-size; reserve the character width.
+share the role of their position). Correct → role color stays, sage underline
+plus a short sage background bloom. Wrong → rust underline, rust line-through,
+and `shake`. Segments never jump in size; reserve the character width.
 
 ### Drill selector
 Three framed tiles in a row. Each shows a compact ASCII motif that *is* the

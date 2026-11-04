@@ -415,7 +415,6 @@ body::before {
   box-shadow: 0 0 8px rgba(240, 169, 59, 0.55);
 }
 .seg[data-mark="hit"] {
-  color: var(--sage);
   animation: segHit 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 @keyframes segHit {
@@ -430,6 +429,9 @@ body::before {
 }
 .seg[data-mark="miss"] {
   color: var(--rust);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(224, 103, 74, 0.7);
   animation: shake 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 .seg[data-mark="miss"]::after {
