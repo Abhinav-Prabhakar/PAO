@@ -5,11 +5,12 @@ import { AsciiAnim, PROJECTOR_FRAMES, REEL_FRAMES, SPIN } from './components/Asc
 import { Frame, type ViewMode } from './components/Frame'
 import { Projector } from './components/Projector'
 import { Codex } from './components/Codex'
+import { Trainer } from './components/Trainer'
 import { PI_DIGITS, chunkDigits, randomDigits } from './lib/ascii'
 import { ROLE_ORDER, ROLES } from './lib/roles'
 
 const MAX = 1200
-type Tab = 'reel' | 'codex'
+type Tab = 'reel' | 'codex' | 'trainer'
 
 const LOGO: [string, string][] = [
   ['P', '█▀█\n█▀▀'],
@@ -72,6 +73,7 @@ export default function App() {
       </header>
 
       {/* ───────── input slate ───────── */}
+      {tab !== 'trainer' && (
       <section className="slate fade-up relative mt-8 px-4 py-4" style={{ animationDelay: '120ms' }}>
         <span className="corner tl -top-1 -left-1">┌</span>
         <span className="corner tr -top-1 -right-1">┐</span>
@@ -117,6 +119,7 @@ export default function App() {
           </div>
         </div>
       </section>
+      )}
 
       {/* ───────── toolbar ───────── */}
       <nav className="fade-up mt-8 mb-6 flex items-center justify-between" style={{ animationDelay: '220ms' }}>
@@ -126,6 +129,9 @@ export default function App() {
           </button>
           <button className="btn" aria-pressed={tab === 'codex'} data-tip="codex 00–99" aria-label="codex" onClick={() => setTab('codex')}>
             ▦
+          </button>
+          <button className="btn" aria-pressed={tab === 'trainer'} data-tip="trainer" aria-label="trainer" onClick={() => setTab('trainer')}>
+            ◎
           </button>
         </div>
         <div
@@ -141,6 +147,8 @@ export default function App() {
       <main className="flex-1">
         {tab === 'codex' ? (
           <Codex chunks={chunks} />
+        ) : tab === 'trainer' ? (
+          <Trainer />
         ) : chunks.length === 0 ? (
           <div className="fade-up flex flex-col items-center gap-6 py-16 text-amber/80">
             <AsciiAnim frames={PROJECTOR_FRAMES} fps={6} className="role-P" style={{ ['--fs' as string]: '15px' }} />

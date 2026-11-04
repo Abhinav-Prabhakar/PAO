@@ -351,6 +351,145 @@ body::before {
   100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.4) rotate(var(--rot)); opacity: 0; }
 }
 
+/* ───────── Trainer console ───────── */
+.drill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 76px;
+  height: 46px;
+  padding: 0 10px;
+  color: var(--cream);
+  background: rgba(13, 10, 7, 0.32);
+  border: 1px solid rgba(234, 223, 196, 0.1);
+  border-radius: 3px;
+  opacity: 0.55;
+  transition: opacity 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.drill:hover {
+  opacity: 0.92;
+  border-color: rgba(240, 169, 59, 0.35);
+}
+.drill:focus-visible {
+  outline: 1px solid var(--amber);
+  outline-offset: 2px;
+  opacity: 1;
+}
+.drill[aria-pressed="true"] {
+  opacity: 1;
+  border-color: rgba(240, 169, 59, 0.7);
+  background: rgba(240, 169, 59, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(240, 169, 59, 0.12), 0 0 18px rgba(240, 169, 59, 0.1);
+}
+.drill pre,
+.drill .ascii {
+  pointer-events: none;
+}
+
+/* segmented digit entry */
+.seg {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--cream);
+  transition: color 0.2s;
+}
+.seg::after {
+  content: "";
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: -0.22em;
+  height: 1px;
+  background: rgba(234, 223, 196, 0.14);
+  transform: scaleX(0.55);
+  transition: transform 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.seg[data-active]::after {
+  background: var(--amber);
+  transform: scaleX(1);
+  box-shadow: 0 0 8px rgba(240, 169, 59, 0.55);
+}
+.seg[data-mark="hit"] {
+  color: var(--sage);
+}
+.seg[data-mark="hit"]::after {
+  background: var(--sage);
+  transform: scaleX(1);
+  box-shadow: 0 0 8px rgba(127, 181, 166, 0.4);
+}
+.seg[data-mark="miss"] {
+  color: var(--rust);
+  animation: shake 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.seg[data-mark="miss"]::after {
+  background: var(--rust);
+  transform: scaleX(1);
+}
+
+/* encode option tiles */
+.option {
+  position: relative;
+  padding: 7px 4px 5px;
+  background: rgba(13, 10, 7, 0.32);
+  border: 1px solid rgba(234, 223, 196, 0.1);
+  border-radius: 3px;
+  transition: transform 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.option:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.option:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 1px;
+}
+.option[data-picked] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.option[data-correct] {
+  border-color: rgba(127, 181, 166, 0.75);
+  background: rgba(127, 181, 166, 0.1);
+}
+.option[data-miss] {
+  border-color: rgba(224, 103, 74, 0.7);
+  background: rgba(224, 103, 74, 0.1);
+  animation: shake 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.keycap {
+  font-size: 8px;
+  line-height: 1;
+  color: rgba(234, 223, 196, 0.28);
+  border: 1px solid rgba(234, 223, 196, 0.12);
+  border-radius: 2px;
+  padding: 1px 3px;
+}
+
+/* reel reveal timer */
+.drain {
+  width: 100%;
+  transform-origin: left center;
+  animation: drain var(--dur, 2s) linear forwards;
+}
+@keyframes drain {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(1px); }
+}
+
 /* ───────── Misc animation ───────── */
 @keyframes blink {
   0%, 49% { opacity: 1; }
@@ -401,4 +540,6 @@ button {
 
 @media (prefers-reduced-motion: reduce) {
   .fx-grain, .fx-flicker, .fx-scratch, .blink, .projector-flicker { animation: none; }
+  .seg[data-mark="miss"], .option[data-miss] { animation: none; }
+  .drain { animation-duration: 0.01s; }
 }
