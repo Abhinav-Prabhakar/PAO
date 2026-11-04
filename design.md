@@ -94,7 +94,7 @@ Everything — UI, art, digits, prose — is monospace. This is deliberate.
 
 | Use | Size | Weight | Tracking | Notes |
 | --- | --- | --- | --- | --- |
-| Frame edge marks | 8px | 400 | `0.18em` | uppercase, amber 55% |
+| Frame edge marks | 8px | 400 | `0.18em` | uppercase, amber 75% |
 | Micro label / tooltip | 9–10px | 400 | `0.2–0.3em` | uppercase where used |
 | Body / words | 12–15px | 400 | normal | cream |
 | Card digit pair | 20–24px | 600 | `0.12em` | role color |
@@ -364,6 +364,10 @@ session but keeps the stats.
 
 - All ASCII art is `aria-hidden`; an adjacent text word or `aria-label` carries
   the meaning. Never make the drawing the only content.
+- When a control's whole surface is ASCII (drill tiles, the arm stage), keep the
+  art in a presentational layer and let a transparent overlay `<button>` own the
+  accessible name, keyboard target, and focus ring. The hit area stays the full
+  tile; the glyphs never leak into the accessible name.
 - Color is never the sole correctness signal: pair with `✓`/`✕`, underline
   weight, shake/pulse, and the revealed answer.
 - Focus rings: 1px amber, visible on keyboard only. Every interactive element

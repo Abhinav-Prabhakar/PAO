@@ -102,13 +102,13 @@ export default function App() {
           </div>
   
           <div className="mt-3 flex items-center justify-between gap-4 border-t border-cream/10 pt-3">
-            <div className="flex items-center gap-4 text-xs text-cream/50">
+            <div className="flex items-center gap-4 text-xs text-cream/65">
               <span data-tip="digits" className="tabular-nums text-cream/80">
                 {String(digits.length).padStart(4, '0')}
               </span>
               <span data-tip="next frame" className="tracking-[0.15em] text-amber">
                 {'▰'.repeat(fill)}
-                <span className="text-cream/20">{'▱'.repeat(6 - fill)}</span>
+                <span className="text-cream/45">{'▱'.repeat(6 - fill)}</span>
               </span>
               <span data-tip="frames" className="tabular-nums text-cream/80">
                 ▤ {chunks.length}
@@ -172,7 +172,7 @@ export default function App() {
         )}
       </main>
 
-      <footer className="mt-16 text-center text-[10px] tracking-[0.4em] text-cream/20">
+      <footer className="mt-16 text-center text-[10px] tracking-[0.4em] text-cream/55">
         ─────── ▸ 00 ─ 99 ◂ ───────
       </footer>
 

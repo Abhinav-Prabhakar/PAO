@@ -165,7 +165,7 @@ body::before {
 .edge {
   font-size: 8px;
   letter-spacing: 0.18em;
-  color: rgba(240, 169, 59, 0.55);
+  color: rgba(240, 169, 59, 0.75);
   text-transform: uppercase;
 }
 
@@ -353,6 +353,7 @@ body::before {
 
 /* ───────── Trainer console ───────── */
 .drill {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -370,12 +371,22 @@ body::before {
   opacity: 0.92;
   border-color: rgba(240, 169, 59, 0.35);
 }
-.drill:focus-visible {
+.drill-hit {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+.drill-hit:focus-visible {
   outline: 1px solid var(--amber);
   outline-offset: 2px;
+}
+.drill:has(.drill-hit:focus-visible) {
   opacity: 1;
 }
-.drill[aria-pressed="true"] {
+.drill[data-active] {
   opacity: 1;
   border-color: rgba(240, 169, 59, 0.7);
   background: rgba(240, 169, 59, 0.08);

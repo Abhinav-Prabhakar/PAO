@@ -57,7 +57,7 @@ function bar(value: number, width: number) {
 function DrillIcon({ drill }: { drill: Drill }) {
   if (drill === 'reel') {
     return (
-      <span className="ascii block text-center" style={{ ['--fs' as string]: '11px' }}>
+      <span className="ascii block text-center" aria-hidden style={{ ['--fs' as string]: '11px' }}>
         <span className="role-P">▤</span>
         <span className="role-A">▤</span>
         <span className="role-O">▤</span>
@@ -69,7 +69,7 @@ function DrillIcon({ drill }: { drill: Drill }) {
     )
   }
   return (
-    <span className="ascii whitespace-pre" style={{ ['--fs' as string]: '11px' }}>
+    <span className="ascii whitespace-pre" aria-hidden style={{ ['--fs' as string]: '11px' }}>
       {drill === 'decode' ? (
         <>
           <span className="role-P">(o_o)</span>
@@ -166,9 +166,9 @@ function AnswerWords({ triple }: { triple: Triple }) {
   return (
     <span className="text-[10px] tracking-wide">
       <span className="role-P" style={{ textShadow: 'none' }}>{triple[0].person}</span>
-      <span className="text-cream/20"> · </span>
+      <span className="text-cream/40"> · </span>
       <span className="role-A" style={{ textShadow: 'none' }}>{triple[1].action}</span>
-      <span className="text-cream/20"> · </span>
+      <span className="text-cream/40"> · </span>
       <span className="role-O" style={{ textShadow: 'none' }}>{triple[2].object}</span>
     </span>
   )
@@ -180,7 +180,7 @@ function Prompt({ p, role, size }: { p: Pao; role: Role; size: number | string }
   return (
     <div className="flex min-w-0 flex-col items-center gap-1.5">
       <span
-        className={`text-[9px] tracking-[0.2em] role-${role} opacity-60`}
+        className={`text-[9px] tracking-[0.2em] role-${role} opacity-75`}
         style={{ textShadow: 'none' }}
         data-tip={ROLES[role].name}
       >
@@ -387,15 +387,18 @@ export function Trainer() {
   const stage = useMemo(() => {
     if (phase === 'ready') {
       return (
-        <button
-          onClick={arm}
-          aria-label={`arm ${DRILL_NAMES[drill]} drill`}
-          className="group flex flex-col items-center gap-4 outline-none focus-visible:ring-1 focus-visible:ring-amber"
-        >
-          <AsciiAnim frames={LEADER_FRAMES} fps={1.1} className="role-P opacity-80" style={{ ['--fs' as string]: '13px' }} />
-          <span className="text-lg text-amber transition-transform duration-300 group-hover:scale-110">▶</span>
-          <span className="edge transition-colors group-hover:text-amber">arm · ↵</span>
-        </button>
+        <div className="group relative flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-4" aria-hidden>
+            <AsciiAnim frames={LEADER_FRAMES} fps={1.1} className="role-P opacity-80" style={{ ['--fs' as string]: '13px' }} />
+            <span className="text-lg text-amber transition-transform duration-300 group-hover:scale-110">▶</span>
+            <span className="edge transition-colors group-hover:text-amber">arm · ↵</span>
+          </div>
+          <button
+            onClick={arm}
+            aria-label={`arm ${DRILL_NAMES[drill]} drill`}
+            className="absolute inset-0 rounded-sm outline-none focus-visible:ring-1 focus-visible:ring-amber"
+          />
+        </div>
       )
     }
 
@@ -408,9 +411,9 @@ export function Trainer() {
           </div>
           <div className="text-2xl tabular-nums text-cream/85">
             {pad(score)}
-            <span className="text-cream/25"> / {pad(len)}</span>
+            <span className="text-cream/45"> / {pad(len)}</span>
           </div>
-          <div className="flex items-center gap-7 text-[10px] tracking-[0.15em] text-cream/45">
+          <div className="flex items-center gap-7 text-[10px] tracking-[0.15em] text-cream/70">
             <span data-tip="best streak · session">▲ {pad(session.best)}</span>
             <span data-tip="personal best · score">PB {bar(best / len, 5)}</span>
           </div>
@@ -461,7 +464,7 @@ export function Trainer() {
                           <span className="keycap absolute top-1 right-1.5">{i + 1}</span>
                           <AsciiArt lines={cachedArt(role, p.n)} role={role} size="clamp(5px, 1.2vw, 7px)" delay={i * 40} instant />
                           <span
-                            className={`w-full truncate text-center text-[8px] leading-none tracking-wide role-${role} opacity-55 transition-opacity group-hover:opacity-100`}
+                            className={`w-full truncate text-center text-[8px] leading-none tracking-wide role-${role} opacity-70 transition-opacity group-hover:opacity-100`}
                             style={{ textShadow: 'none' }}
                           >
                             {wordOf(role, p)}
@@ -609,16 +612,16 @@ export function Trainer() {
           <span className="edge hidden sm:inline">▸ trainer</span>
           <div className="flex flex-1 items-center justify-center gap-2">
             {DRILLS.map((d) => (
-              <button
-                key={d}
-                onClick={() => choose(d)}
-                aria-pressed={drill === d}
-                aria-label={DRILL_NAMES[d]}
-                data-tip={DRILL_NAMES[d]}
-                className="drill"
-              >
+              <div key={d} className="drill" data-active={drill === d ? '' : undefined}>
                 <DrillIcon drill={d} />
-              </button>
+                <button
+                  onClick={() => choose(d)}
+                  aria-pressed={drill === d}
+                  aria-label={DRILL_NAMES[d]}
+                  data-tip={DRILL_NAMES[d]}
+                  className="drill-hit"
+                />
+              </div>
             ))}
           </div>
           <span className="edge tabular-nums">
@@ -629,12 +632,12 @@ export function Trainer() {
         <div className="gate mx-2 mb-2 sm:mx-3">
           {/* HUD */}
           <div className="flex items-center justify-between gap-3 border-b border-cream/10 px-3 py-2">
-            <span className="flex items-center gap-1.5 text-[10px] tabular-nums text-cream/45">
+            <span className="flex items-center gap-1.5 text-[10px] tabular-nums text-cream/65">
               <span aria-hidden>◷</span>
               {phase === 'input' || phase === 'feedback' ? `${elapsed.toFixed(1)}s` : '—'}
             </span>
 
-            <span className="flex items-center gap-1" data-tip="last five" aria-label="recent results">
+            <span className="flex items-center gap-1" role="img" data-tip="last five" aria-label="recent results">
               {dots.map((hit, i) => (
                 <span
                   key={`${i}-${String(hit)}`}
@@ -650,6 +653,7 @@ export function Trainer() {
 
             <span
               className="text-[10px] tracking-[0.18em] text-amber/60"
+              role="img"
               data-tip="personal best"
               aria-label={`personal best ${best} of ${len}`}
             >
