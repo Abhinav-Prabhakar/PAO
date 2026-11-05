@@ -513,7 +513,7 @@ export const PAO_NOTES: Record<number, NoteSet> = {
       source: 'https://en.wikipedia.org/wiki/1984_Indianapolis_500',
     },
     O: {
-      text: 'the 1968 indy 500 was the last with a front-engine car',
+      text: 'the 1968 indy 500 was the last to start a front-engine car',
       source: 'https://en.wikipedia.org/wiki/1968_Indianapolis_500',
     },
   },

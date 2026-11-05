@@ -111,7 +111,7 @@ landing / moon).
 | 67 | P | tom sneva won the 67th indianapolis 500 in 1983 | https://en.wikipedia.org/wiki/1983_Indianapolis_500 |
 | 68 | P | rick mears won the 68th indianapolis 500 in 1984 | https://en.wikipedia.org/wiki/1984_Indianapolis_500 |
 | 68 | A | rick mears set a 500-mile speed record at the 68th indy 500 | https://en.wikipedia.org/wiki/1984_Indianapolis_500 |
-| 68 | O | the 1968 indy 500 was the last with a front-engine car | https://en.wikipedia.org/wiki/1968_Indianapolis_500 |
+| 68 | O | the 1968 indy 500 was the last to start a front-engine car | https://en.wikipedia.org/wiki/1968_Indianapolis_500 |
 | 69 | P | buzz aldrin became the second man to walk on the moon in 1969 | https://en.wikipedia.org/wiki/Buzz_Aldrin |
 | 69 | A | apollo 11's lunar module eagle landed on 20 july 1969 | https://en.wikipedia.org/wiki/Apollo_11 |
 | 69 | O | apollo 11 first landed humans on the moon in 1969 | https://en.wikipedia.org/wiki/Apollo_11 |

@@ -72,7 +72,7 @@ for those roles.
 | 67 | P | Tom Sneva | tom sneva won the 67th indianapolis 500 in 1983 | https://en.wikipedia.org/wiki/1983_Indianapolis_500 | The 67th Indianapolis 500 was held in 1983; Tom Sneva won his first and only Indianapolis 500. | strong |
 | 68 | P | Rick Mears | rick mears won the 68th indianapolis 500 in 1984 | https://en.wikipedia.org/wiki/1984_Indianapolis_500 | The 68th Indianapolis 500 was held in 1984; Rick Mears won his second Indy 500. | strong |
 | 68 | A | racing | rick mears set a 500-mile speed record at the 68th indy 500 | https://en.wikipedia.org/wiki/1984_Indianapolis_500 | Mears set a new speed record for 500 miles at 163.612 mph at the 68th Indianapolis 500. | strong |
-| 68 | O | car | the 1968 indy 500 was the last with a front-engine car | https://en.wikipedia.org/wiki/1968_Indianapolis_500 | This was the final Indianapolis 500 to feature a front-engined car in the starting field. | strong |
+| 68 | O | car | the 1968 indy 500 was the last to start a front-engine car | https://en.wikipedia.org/wiki/1968_Indianapolis_500 | This was the final Indianapolis 500 to feature a front-engined car in the starting field. | strong |
 | 69 | P | Buzz Aldrin | buzz aldrin became the second man to walk on the moon in 1969 | https://en.wikipedia.org/wiki/Buzz_Aldrin | Aldrin was the second person to walk on the Moon and was the Lunar Module Eagle pilot on the 1969 Apollo 11 mission. | strong |
 | 69 | A | landing | apollo 11's lunar module eagle landed on 20 july 1969 | https://en.wikipedia.org/wiki/Apollo_11 | Apollo 11 was the American spaceflight that first landed humans on the Moon on July 20, 1969. | strong |
 | 69 | O | moon | apollo 11 first landed humans on the moon in 1969 | https://en.wikipedia.org/wiki/Apollo_11 | Apollo 11 was the American spaceflight that first landed humans on the Moon in 1969. | strong |
@@ -383,7 +383,7 @@ same number-level hook.
     "n": 68,
     "role": "O",
     "word": "car",
-    "note": "the 1968 indy 500 was the last with a front-engine car",
+    "note": "the 1968 indy 500 was the last to start a front-engine car",
     "sources": [
       "https://en.wikipedia.org/wiki/1968_Indianapolis_500"
     ],
