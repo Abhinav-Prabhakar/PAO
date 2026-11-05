@@ -167,6 +167,8 @@ export function chunkDigits(raw: string): Chunk[] {
 }
 
 export function article(word: string) {
+  if (/^(hour|honest|heir)/i.test(word)) return 'an'
+  if (/^(uni|use|usu|eu|ewe|one)/i.test(word)) return 'a'
   return /^[aeiou]/i.test(word) ? 'an' : 'a'
 }
 

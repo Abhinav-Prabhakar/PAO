@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { AsciiArt } from './AsciiArt'
-import { article, cachedArt, type Chunk } from '../lib/ascii'
+import { cachedArt, type Chunk } from '../lib/ascii'
+import { caption } from '../lib/caption'
 import { ROLE_ORDER, ROLES } from '../lib/roles'
 import { shutter, unlockSound } from '../lib/sound'
 
@@ -79,6 +80,7 @@ export function Projector({ chunks, index, onIndex, onClose }: Props) {
 
   if (!chunk) return null
   const words = [chunk.pairs[0].person, chunk.pairs[1].action, chunk.pairs[2].object]
+  const line = caption(words[0], words[1], words[2])
   const num = String(index + 1).padStart(3, '0')
 
   return (
@@ -124,8 +126,9 @@ export function Projector({ chunks, index, onIndex, onClose }: Props) {
               })}
             </div>
             <p className="mt-6 text-center text-xs text-cream/50 sm:text-sm">
-              <span className="text-amber">{words[0]}</span> <span className="text-sage">{words[1]}</span> with {article(words[2])}{' '}
-              <span className="text-rust">{words[2]}</span>
+              <span className="text-amber">{line.person}</span> is{' '}
+              <span className="text-sage">{line.action}</span> {line.preposition && `${line.preposition} `}
+              {line.determiner} <span className="text-rust">{line.object}</span>.
             </p>
           </div>
           <div className="sprockets-v" />

@@ -1,4 +1,5 @@
-import { article, cachedArt, type Chunk } from './ascii'
+import { cachedArt, type Chunk } from './ascii'
+import { captionText } from './caption'
 import { ROLE_ORDER, ROLES } from './roles'
 
 const pad3 = (n: number) => String(n).padStart(3, '0')
@@ -43,7 +44,7 @@ export function reelText(chunks: Chunk[], digits: string, source: string) {
       `  P ${chunk.pairs[0].pair} ${words[0]}`,
       `  A ${chunk.pairs[1].pair} ${words[1]}`,
       `  O ${chunk.pairs[2].pair} ${words[2]}`,
-      `  ${words[0]} ${words[1]} with ${article(words[2])} ${words[2]}.`,
+      `  ${captionText(words[0], words[1], words[2])}`,
       '',
       ...art,
     ]

@@ -26,6 +26,41 @@ export const ACTIONS = [
   'polishing', 'bending', 'wrestling', 'gargling', 'steering', 'plucking', 'mixing', 'hatching', 'floating', 'exploding',
 ]
 
+/**
+ * How each action meets its object in a reading caption. `direct` means the
+ * verb takes the object as-is ("pushing a jukebox"); every other value is the
+ * preposition that makes the phrase grammatical ("dancing with a jukebox").
+ * Grouped by link so the whole vocabulary can be audited at a glance.
+ */
+const ACTION_GROUPS: Record<string, string[]> = {
+  direct: [
+    'juggling', 'kicking', 'hugging', 'climbing', 'painting', 'throwing', 'spinning', 'balancing', 'smashing',
+    'stirring', 'tickling', 'launching', 'sketching', 'carving', 'pouring', 'crushing', 'chasing', 'building',
+    'unwrapping', 'shaking', 'licking', 'bouncing', 'melting', 'splashing', 'pushing', 'pulling', 'lifting',
+    'tossing', 'rolling', 'freezing', 'burning', 'sewing', 'slicing', 'dropping', 'catching', 'sniffing',
+    'pinching', 'stacking', 'zipping', 'folding', 'twisting', 'sliding', 'flipping', 'inflating', 'planting',
+    'slapping', 'squeezing', 'trapping', 'scrubbing', 'tangling', 'peeling', 'hurling', 'polishing', 'bending',
+    'wrestling', 'steering', 'plucking', 'mixing',
+  ],
+  past: ['sprinting', 'flying', 'sailing', 'surfing', 'rowing', 'marching', 'racing', 'tiptoeing', 'gliding', 'floating'],
+  to: ['whispering', 'singing', 'bowing'],
+  at: ['waving', 'pointing', 'winking', 'whistling', 'shooting', 'swinging', 'blowing'],
+  with: ['dancing'],
+  into: ['diving'],
+  behind: ['hiding'],
+  beside: [
+    'digging', 'sweeping', 'stretching', 'knitting', 'yawning', 'snoring', 'raking', 'sprinkling', 'clapping',
+    'gargling', 'hatching', 'exploding',
+  ],
+  around: ['skating', 'weaving', 'hopping'],
+  on: ['drumming', 'hammering', 'stomping'],
+  over: ['vaulting'],
+}
+
+export const ACTION_LINK: Record<string, string> = Object.fromEntries(
+  Object.entries(ACTION_GROUPS).flatMap(([link, actions]) => actions.map((action) => [action, link])),
+)
+
 export const OBJECTS = [
   'anchor', 'balloon', 'candle', 'donut', 'envelope', 'feather', 'globe', 'hourglass', 'igloo', 'jar',
   'kite', 'lantern', 'mirror', 'net', 'olive', 'pencil', 'quill', 'rocket', 'saxophone', 'teapot',

@@ -484,7 +484,22 @@ These surfaces extend the film metaphor rather than adding new chrome.
   projector, `Esc` blurs. Never intercept keys while a text input, textarea, or
   contenteditable is focused.
 
-### 16.5 PWA & delivery
+### 16.5 Captions
+
+- Every frame reads as one sentence: `Person is action <link> a object.` The
+  verb stays a present participle, so there is no conjugation table to keep.
+- `ACTION_LINK` in `words.ts` is the single source of grammar. `direct` verbs
+  take the object ("pushing a jukebox"); every other value is the preposition
+  that makes the phrase true for all 100 objects ("dancing with a jukebox",
+  "floating past a map"). Each action appears exactly once.
+- The projector and the `.txt` export both build from `captionText`; never
+  hand-format a sentence in a component.
+- Articles are phonetic (`an hourglass`, `a unicycle`), and measure phrases are
+  allowed (`a pair of scissors`).
+- Pick a link that stays grammatical for the whole object vocabulary, not just
+  the frame on screen.
+
+### 16.6 PWA & delivery
 
 - Build with `base: './'` and `vite-plugin-singlefile`, so `dist/index.html`
   works from a GitHub Pages subpath and offline.
@@ -499,7 +514,7 @@ These surfaces extend the film metaphor rather than adding new chrome.
   apple-touch-icon, SVG + PNG favicons, and a `WebApplication` JSON-LD block.
 - Deploy from the `gh-pages` branch; do not require a CI check to publish.
 
-### 16.6 Repository conventions
+### 16.7 Repository conventions
 
 - Commit in logical slices: art, reel features, projector, metadata, docs.
 - After the remote exists, commit and push frequently.
