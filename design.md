@@ -1,4 +1,4 @@
-# PAO Reel — Design System
+# PAO — Design System
 
 > A number-memory projector. Digits become six-frame reels; each reel is a
 > Person, an Action, and an Object, drawn as ASCII. The interface should feel
@@ -505,7 +505,7 @@ These surfaces extend the film metaphor rather than adding new chrome.
   works from a GitHub Pages subpath and offline.
 - `public/` holds `manifest.webmanifest`, `sw.js`, `robots.txt`, `sitemap.xml`,
   `og.png`, and icons.
-- Manifest `id` is unique to the app path (`./?app=pao-reel`), not a generic
+- Manifest `id` is unique to the app path (`./?app=pao`), not a generic
   origin root, so it cannot collide with another installed PWA.
 - Service worker is registered **production only**, caches the shell and icons,
   and updates with `skipWaiting` + `clients.claim`. Never register it in dev.

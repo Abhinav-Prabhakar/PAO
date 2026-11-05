@@ -1,5 +1,5 @@
 {
-  "id": "./?app=pao-reel",
+  "id": "./?app=pao",
   "name": "PAO",
   "short_name": "PAO",
   "description": "Turn long digit strings into six-digit film frames: a Person, an Action, and an Object drawn in ASCII, with a recall trainer.",

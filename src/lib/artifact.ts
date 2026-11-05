@@ -28,7 +28,7 @@ export function permalinkFor(digits: string) {
 export function reelText(chunks: Chunk[], digits: string, source: string) {
   const line = '─'.repeat(46)
   const head = [
-    'PAO REEL',
+    'PAO',
     line,
     `${pad3(chunks.length)} frames · ${String(digits.length).padStart(4, '0')} digits`,
     `source ${sourceLabel(source)}`,
@@ -93,7 +93,7 @@ export function contactSheetHtml(chunks: Chunk[], digits: string, source: string
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PAO Reel — Contact Sheet</title>
+<title>PAO — Contact Sheet</title>
 <style>
   @page { size: A4 portrait; margin: 10mm; }
   * { box-sizing: border-box; }
@@ -165,7 +165,7 @@ export function contactSheetHtml(chunks: Chunk[], digits: string, source: string
 <body>
 <header class="sheet">
   <div>
-    <h1>PAO Reel</h1>
+    <h1>PAO</h1>
     <div class="sub">contact sheet · ${pad3(chunks.length)} frames · ${String(digits.length).padStart(4, '0')} digits · source ${escapeHtml(
       sourceLabel(source),
     )}</div>
@@ -186,7 +186,7 @@ export function downloadReel(chunks: Chunk[], digits: string, source: string) {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
-  a.download = `pao-reel-${chunks.length}f.txt`
+  a.download = `pao-${chunks.length}f.txt`
   document.body.appendChild(a)
   a.click()
   a.remove()

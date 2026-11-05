@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="public/og.png" alt="PAO Reel — turn digits into frames" width="920" />
+<img src="public/og.png" alt="PAO — turn digits into frames" width="920" />
 
-# PAO Reel
+# PAO
 
 **Turn digits into frames.**
 
