@@ -16,12 +16,12 @@ function FrameBase({ chunk, mode, onOpen }: Props) {
   const wordOf = (p: number) => [chunk.pairs[0].person, chunk.pairs[1].action, chunk.pairs[2].object][p]
 
   return (
-    <article
+    <div
       data-hover
       data-frame={chunk.index}
       role="button"
       tabIndex={0}
-      aria-label={`frame ${num}: ${chunk.digits} · ${wordOf(0)}, ${wordOf(1)}, ${wordOf(2)}`}
+      aria-label={`frame ${num}: ${chunk.pairs.map((p) => p.pair).join(' ')} · ${wordOf(0)}, ${wordOf(1)}, ${wordOf(2)}`}
       onClick={() => onOpen(chunk.index)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -34,9 +34,9 @@ function FrameBase({ chunk, mode, onOpen }: Props) {
     >
       <div className="sprockets" />
       <div className="flex items-center justify-between px-3 pb-1.5">
-        <span className="edge">▸ {num}</span>
-        <span className="edge reveal !text-amber">▶</span>
-        <span className="edge">{num}A</span>
+        <span className="edge" aria-hidden="true">▸ {num}</span>
+        <span className="edge reveal !text-amber" aria-hidden="true">▶</span>
+        <span className="edge" aria-hidden="true">{num}A</span>
       </div>
 
       <div className="gate mx-3 grid grid-cols-3 gap-1 px-2 pt-3 pb-2">
@@ -67,7 +67,7 @@ function FrameBase({ chunk, mode, onOpen }: Props) {
         })}
       </div>
 
-      <div className="mt-1.5 flex items-center justify-center gap-3 pb-1 text-[9px] tracking-[0.3em]">
+      <div className="mt-1.5 flex items-center justify-center gap-3 pb-1 text-[9px] tracking-[0.3em]" aria-hidden="true">
         {ROLE_ORDER.map((r) => (
           <span key={r} className={`role-${r} opacity-30 transition-opacity duration-300 group-hover:opacity-90`} style={{ textShadow: 'none' }}>
             {ROLES[r].glyph}
@@ -75,7 +75,7 @@ function FrameBase({ chunk, mode, onOpen }: Props) {
         ))}
       </div>
       <div className="sprockets" />
-    </article>
+    </div>
   )
 }
 

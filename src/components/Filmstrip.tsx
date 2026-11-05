@@ -120,7 +120,7 @@ export function Filmstrip({ chunks, active, onSelect }: Props) {
         <span className="edge" data-tip="filmstrip">▤</span>
         <span className="tabular-nums text-[10px] text-cream/70">
           <span className={preview === null ? 'text-amber' : 'text-cream/80'}>{pad3(shown + 1)}</span>
-          <span className="text-cream/35"> / {pad3(n)}</span>
+          <span className="text-cream/60"> / {pad3(n)}</span>
         </span>
         <span className="ml-auto">
           <FrameDigits chunk={chunk} />
