@@ -1,5 +1,5 @@
 /* PAO Reel — offline shell. The whole app is inlined into index.html. */
-const CACHE = 'pao-reel-v1'
+const CACHE = 'pao-reel-v2'
 const SHELL = [
   './',
   './index.html',
