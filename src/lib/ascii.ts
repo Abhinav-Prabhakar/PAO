@@ -1,4 +1,5 @@
 import { ACTIONS, OBJECTS, PERSONS } from './words'
+import { OBJECT_SPRITES } from './sprites'
 
 export const ART_W = 13
 export const ART_H = 7
@@ -93,131 +94,11 @@ export function actionArt(n: number): string[] {
   return rows
 }
 
-/* ───────────── OBJECT: distinct silhouettes, seeded variation ───────────── */
-
-const OBJECT_TEMPLATES: string[][] = [
-  // 0 orb
-  [
-    '  .#####.  ',
-    ' #▒▒▒▒▒▒▒# ',
-    '#▒▒▓▓▓▒▒▒#',
-    '#▒▓▓██▓▒▒#',
-    '#▒▒▓▓▓▒▒▒#',
-    ' #▒▒▒▒▒▒▒# ',
-    "  '#####'  ",
-  ],
-  // 1 bottle
-  [
-    '    .#.    ',
-    '    #▒#    ',
-    '    #▒#    ',
-    '  .##▒##.  ',
-    ' #▒▒▒▒▒▒▒# ',
-    ' #▒▓▓▓▓▓▒# ',
-    "  '#####'  ",
-  ],
-  // 2 bell
-  [
-    '   .###.   ',
-    '  .#▒▒▒#.  ',
-    ' #▒▒▒▒▒▒▒# ',
-    '#▒▒▓▓▓▒▒▒#',
-    '#▒▒▒▒▒▒▒▒▒#',
-    " '#######' ",
-    '    ##     ',
-  ],
-  // 3 key
-  [
-    '  .---.    ',
-    ' #▒▒▒#     ',
-    ' #▒▒▒#     ',
-    "  '---'####",
-    '       #  #',
-    '       ####',
-    '           ',
-  ],
-  // 4 rocket
-  [
-    '     #     ',
-    '    #▒#    ',
-    '   #▒▒▒#   ',
-    '  #▒▓▓▓▒#  ',
-    ' #▒▓██▓▒# ',
-    ' #▒▓▓▓▒#/\\ ',
-    "  '###'/   ",
-  ],
-  // 5 lantern
-  [
-    '    /^\\    ',
-    '   /▒▒▒\\   ',
-    '  /▒▒▒▒▒\\  ',
-    ' /▒▒▒▒▒▒▒\\ ',
-    ' |▒▓▓▓▓▓▒| ',
-    ' |▒▒▒▒▒▒▒| ',
-    " '-------' ",
-  ],
-  // 6 cup
-  [
-    ' .-------. ',
-    ' |▒▒▒▒▒▒▒| ',
-    ' |▒▓▓▓▓▓▒|─┐',
-    '  \\▒▒▒▒▒/──┘',
-    '   \\▒▒▒/   ',
-    "    '-'    ",
-    '           ',
-  ],
-  // 7 hammer
-  [
-    '  .#####.  ',
-    ' #▒▒▒▒▒▒▒# ',
-    ' #▒▒▒▒▒▒▒# ',
-    "  '##▒##'  ",
-    '     #▒#   ',
-    '     #▒#   ',
-    "     '#'   ",
-  ],
-  // 8 hourglass
-  [
-    ' ######### ',
-    '  \\▒▒▒▒▒/  ',
-    '   \\▒▒▒/   ',
-    '    \\▒/    ',
-    '   /▒▒▒\\   ',
-    '  /▒▒▒▒▒\\  ',
-    ' ######### ',
-  ],
-  // 9 ring
-  [
-    '   .---.   ',
-    '  /     \\  ',
-    ' |  .-.  | ',
-    ' | (▒▒▒) | ',
-    " |  '-'  | ",
-    '  \\     /  ',
-    "   '---'   ",
-  ],
-]
+/* ───────────── OBJECT: hand-authored sprites ───────────── */
 
 export function objectArt(n: number): string[] {
-  const a = Math.floor(n / 10)
-  const b = n % 10
-  const rng = mulberry32(n * 104729 + 7)
-  const fill = b % 3 === 0 ? '▓' : b % 2 === 1 ? '░' : '▒'
-  const rows = OBJECT_TEMPLATES[a].map((row) => center(row, ART_W).slice(0, ART_W).replace(/▒/g, fill))
-
-  // late digits pick up a spark of light
-  const sparks = b >= 8 ? 2 : b >= 6 ? 1 : 0
-  for (let i = 0; i < sparks; i++) {
-    for (let tries = 0; tries < 8; tries++) {
-      const r = Math.floor(rng() * ART_H)
-      const c = Math.floor(rng() * ART_W)
-      if (rows[r][c] === ' ') {
-        rows[r] = rows[r].slice(0, c) + (b % 2 === 0 ? '+' : '*') + rows[r].slice(c + 1)
-        break
-      }
-    }
-  }
-  return rows
+  const i = Number.isFinite(n) ? Math.min(OBJECT_SPRITES.length - 1, Math.max(0, Math.floor(n))) : 0
+  return OBJECT_SPRITES[i]
 }
 
 export function artFor(role: Role, n: number): string[] {
