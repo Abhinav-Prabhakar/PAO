@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="warm" cx="18%" cy="0%" r="80%">
+      <stop offset="0" stop-color="#f0a93b" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#f0a93b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cool" cx="100%" cy="100%" r="60%">
+      <stop offset="0" stop-color="#e0674a" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#e0674a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0d0a07"/>
+  <rect width="1200" height="630" fill="url(#warm)"/>
+  <rect width="1200" height="630" fill="url(#cool)"/>
+  <g fill="#eadfc4" opacity=".16"><rect x="40" y="22" width="18" height="12" rx="2"/><rect x="76" y="22" width="18" height="12" rx="2"/><rect x="112" y="22" width="18" height="12" rx="2"/><rect x="148" y="22" width="18" height="12" rx="2"/><rect x="184" y="22" width="18" height="12" rx="2"/><rect x="220" y="22" width="18" height="12" rx="2"/><rect x="256" y="22" width="18" height="12" rx="2"/><rect x="292" y="22" width="18" height="12" rx="2"/><rect x="328" y="22" width="18" height="12" rx="2"/><rect x="364" y="22" width="18" height="12" rx="2"/><rect x="400" y="22" width="18" height="12" rx="2"/><rect x="436" y="22" width="18" height="12" rx="2"/><rect x="472" y="22" width="18" height="12" rx="2"/><rect x="508" y="22" width="18" height="12" rx="2"/><rect x="544" y="22" width="18" height="12" rx="2"/><rect x="580" y="22" width="18" height="12" rx="2"/><rect x="616" y="22" width="18" height="12" rx="2"/><rect x="652" y="22" width="18" height="12" rx="2"/><rect x="688" y="22" width="18" height="12" rx="2"/><rect x="724" y="22" width="18" height="12" rx="2"/><rect x="760" y="22" width="18" height="12" rx="2"/><rect x="796" y="22" width="18" height="12" rx="2"/><rect x="832" y="22" width="18" height="12" rx="2"/><rect x="868" y="22" width="18" height="12" rx="2"/><rect x="904" y="22" width="18" height="12" rx="2"/><rect x="940" y="22" width="18" height="12" rx="2"/><rect x="976" y="22" width="18" height="12" rx="2"/><rect x="1012" y="22" width="18" height="12" rx="2"/><rect x="1048" y="22" width="18" height="12" rx="2"/><rect x="1084" y="22" width="18" height="12" rx="2"/><rect x="1120" y="22" width="18" height="12" rx="2"/><rect x="1156" y="22" width="18" height="12" rx="2"/><rect x="40" y="596" width="18" height="12" rx="2"/><rect x="76" y="596" width="18" height="12" rx="2"/><rect x="112" y="596" width="18" height="12" rx="2"/><rect x="148" y="596" width="18" height="12" rx="2"/><rect x="184" y="596" width="18" height="12" rx="2"/><rect x="220" y="596" width="18" height="12" rx="2"/><rect x="256" y="596" width="18" height="12" rx="2"/><rect x="292" y="596" width="18" height="12" rx="2"/><rect x="328" y="596" width="18" height="12" rx="2"/><rect x="364" y="596" width="18" height="12" rx="2"/><rect x="400" y="596" width="18" height="12" rx="2"/><rect x="436" y="596" width="18" height="12" rx="2"/><rect x="472" y="596" width="18" height="12" rx="2"/><rect x="508" y="596" width="18" height="12" rx="2"/><rect x="544" y="596" width="18" height="12" rx="2"/><rect x="580" y="596" width="18" height="12" rx="2"/><rect x="616" y="596" width="18" height="12" rx="2"/><rect x="652" y="596" width="18" height="12" rx="2"/><rect x="688" y="596" width="18" height="12" rx="2"/><rect x="724" y="596" width="18" height="12" rx="2"/><rect x="760" y="596" width="18" height="12" rx="2"/><rect x="796" y="596" width="18" height="12" rx="2"/><rect x="832" y="596" width="18" height="12" rx="2"/><rect x="868" y="596" width="18" height="12" rx="2"/><rect x="904" y="596" width="18" height="12" rx="2"/><rect x="940" y="596" width="18" height="12" rx="2"/><rect x="976" y="596" width="18" height="12" rx="2"/><rect x="1012" y="596" width="18" height="12" rx="2"/><rect x="1048" y="596" width="18" height="12" rx="2"/><rect x="1084" y="596" width="18" height="12" rx="2"/><rect x="1120" y="596" width="18" height="12" rx="2"/><rect x="1156" y="596" width="18" height="12" rx="2"/></g>
+
+  <g fill="#f0a93b"><rect x="80" y="92" width="12" height="12"/><rect x="92" y="92" width="12" height="12"/><rect x="104" y="92" width="12" height="12"/><rect x="116" y="92" width="12" height="12"/><rect x="128" y="92" width="12" height="12"/><rect x="80" y="104" width="12" height="12"/><rect x="128" y="104" width="12" height="12"/><rect x="80" y="116" width="12" height="12"/><rect x="128" y="116" width="12" height="12"/><rect x="80" y="128" width="12" height="12"/><rect x="92" y="128" width="12" height="12"/><rect x="104" y="128" width="12" height="12"/><rect x="116" y="128" width="12" height="12"/><rect x="80" y="140" width="12" height="12"/><rect x="80" y="152" width="12" height="12"/><rect x="80" y="164" width="12" height="12"/></g><g fill="#7fb5a6"><rect x="165.8" y="92" width="12" height="12"/><rect x="177.8" y="92" width="12" height="12"/><rect x="189.8" y="92" width="12" height="12"/><rect x="153.8" y="104" width="12" height="12"/><rect x="201.8" y="104" width="12" height="12"/><rect x="153.8" y="116" width="12" height="12"/><rect x="201.8" y="116" width="12" height="12"/><rect x="153.8" y="128" width="12" height="12"/><rect x="165.8" y="128" width="12" height="12"/><rect x="177.8" y="128" width="12" height="12"/><rect x="189.8" y="128" width="12" height="12"/><rect x="201.8" y="128" width="12" height="12"/><rect x="153.8" y="140" width="12" height="12"/><rect x="201.8" y="140" width="12" height="12"/><rect x="153.8" y="152" width="12" height="12"/><rect x="201.8" y="152" width="12" height="12"/><rect x="153.8" y="164" width="12" height="12"/><rect x="201.8" y="164" width="12" height="12"/></g><g fill="#e0674a"><rect x="239.60000000000002" y="92" width="12" height="12"/><rect x="251.60000000000002" y="92" width="12" height="12"/><rect x="263.6" y="92" width="12" height="12"/><rect x="227.60000000000002" y="104" width="12" height="12"/><rect x="275.6" y="104" width="12" height="12"/><rect x="227.60000000000002" y="116" width="12" height="12"/><rect x="275.6" y="116" width="12" height="12"/><rect x="227.60000000000002" y="128" width="12" height="12"/><rect x="275.6" y="128" width="12" height="12"/><rect x="227.60000000000002" y="140" width="12" height="12"/><rect x="275.6" y="140" width="12" height="12"/><rect x="227.60000000000002" y="152" width="12" height="12"/><rect x="275.6" y="152" width="12" height="12"/><rect x="239.60000000000002" y="164" width="12" height="12"/><rect x="251.60000000000002" y="164" width="12" height="12"/><rect x="263.6" y="164" width="12" height="12"/></g>
+
+  <g font-family="Menlo, 'SFMono-Regular', monospace">
+    <text x="316" y="162" font-size="52" font-weight="bold" letter-spacing="13" fill="#eadfc4">REEL</text>
+    <text x="80" y="274" font-size="21" letter-spacing="8" fill="#f0a93b">NUMBER MEMORY PROJECTOR</text>
+
+    <text x="80" y="364" font-size="66" font-weight="bold" fill="#eadfc4">Turn digits</text>
+    <text x="80" y="440" font-size="66" font-weight="bold" fill="#eadfc4">into frames.</text>
+
+    <text x="80" y="508" font-size="22" fill="#eadfc4" opacity=".62">Six digits. A person, an action, an object.</text>
+    <text x="80" y="542" font-size="22" fill="#eadfc4" opacity=".62">Drawn in ASCII. Remembered for good.</text>
+
+    <text x="80" y="600" font-size="18" letter-spacing="2" fill="#f0a93b" opacity=".8">abhinav-prabhakar.github.io/PAO</text>
+  </g>
+
+  <g>
+    <rect x="760" y="92" width="360" height="444" rx="6" fill="#1b140e" stroke="#eadfc4" stroke-opacity=".16"/>
+    <rect x="760" y="92" width="360" height="30" fill="#241a12"/>
+    <rect x="760" y="506" width="360" height="30" fill="#241a12"/>
+    <g fill="#0d0a07" opacity=".9">
+      <rect x="776" y="100" width="14" height="14" rx="2"/><rect x="806" y="100" width="14" height="14" rx="2"/><rect x="836" y="100" width="14" height="14" rx="2"/><rect x="866" y="100" width="14" height="14" rx="2"/><rect x="896" y="100" width="14" height="14" rx="2"/><rect x="926" y="100" width="14" height="14" rx="2"/><rect x="956" y="100" width="14" height="14" rx="2"/><rect x="986" y="100" width="14" height="14" rx="2"/><rect x="1016" y="100" width="14" height="14" rx="2"/><rect x="1046" y="100" width="14" height="14" rx="2"/><rect x="1076" y="100" width="14" height="14" rx="2"/>
+      <rect x="776" y="514" width="14" height="14" rx="2"/><rect x="806" y="514" width="14" height="14" rx="2"/><rect x="836" y="514" width="14" height="14" rx="2"/><rect x="866" y="514" width="14" height="14" rx="2"/><rect x="896" y="514" width="14" height="14" rx="2"/><rect x="926" y="514" width="14" height="14" rx="2"/><rect x="956" y="514" width="14" height="14" rx="2"/><rect x="986" y="514" width="14" height="14" rx="2"/><rect x="1016" y="514" width="14" height="14" rx="2"/><rect x="1046" y="514" width="14" height="14" rx="2"/><rect x="1076" y="514" width="14" height="14" rx="2"/>
+    </g>
+    <g font-family="Menlo, 'SFMono-Regular', monospace">
+      <text x="790" y="168" font-size="16" letter-spacing="3" fill="#eadfc4" opacity=".4">FRAME 052</text>
+      <text x="790" y="226" font-size="44" letter-spacing="6" fill="#f0a93b">31</text>
+      <text x="790" y="262" font-size="18" fill="#f0a93b" opacity=".8">Van Gogh</text>
+      <text x="790" y="322" font-size="44" letter-spacing="6" fill="#7fb5a6">41</text>
+      <text x="790" y="358" font-size="18" fill="#7fb5a6" opacity=".8">pushing</text>
+      <text x="790" y="418" font-size="44" letter-spacing="6" fill="#e0674a">59</text>
+      <text x="790" y="454" font-size="18" fill="#e0674a" opacity=".8">jukebox</text>
+      <text x="790" y="496" font-size="15" fill="#eadfc4" opacity=".42">Van Gogh pushing a jukebox.</text>
+    </g>
+  </g>
+</svg>
