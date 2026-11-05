@@ -76,7 +76,7 @@ specific, documented fact links the word to the number.
 | 26 | Tyson | crushing | acorn |
 | 27 | Hawking | hiding | bell |
 | 28 | Newton | chasing | cactus |
-| 29 | Galileo | building | dice |
+| 29 | Warren G. Harding | building | dice |
 | 30 | Da Vinci | unwrapping | egg |
 | 31 | Van Gogh | shaking | flute |
 | 32 | Dalí | sweeping | guitar |
@@ -84,21 +84,21 @@ specific, documented fact links the word to the number.
 | 34 | Bowie | licking | ice cream |
 | 35 | Prince | bouncing | jellyfish |
 | 36 | Hendrix | blowing | key |
-| 37 | Lennon | knitting | ladder |
+| 37 | Richard Nixon | knitting | ladder |
 | 38 | Dylan | drumming | magnet |
 | 39 | Madonna | melting | needle |
 | 40 | Bach | splashing | oar |
 | 41 | Beethoven | pushing | piano |
 | 42 | Sinatra | pulling | compass |
 | 43 | Mercury | winking | radio |
-| 44 | Cobain | rowing | skateboard |
+| 44 | Barack Obama | rowing | skateboard |
 | 45 | Marley | shooting | telescope |
 | 46 | M. Jackson | lifting | trophy |
 | 47 | Armstrong | weaving | unicycle |
 | 48 | Gagarin | tossing | vase |
-| 49 | Earhart | rolling | wheel |
+| 49 | Joe Montana | passing | football |
 | 50 | Columbus | freezing | crown |
-| 51 | Magellan | burning | boot |
+| 51 | Michel Mayor | discovering | planet |
 | 52 | Amundsen | sewing | clock |
 | 53 | Hillary | slicing | drum |
 | 54 | Lincoln | dropping | eraser |
@@ -108,44 +108,44 @@ specific, documented fact links the word to the number.
 | 58 | Joan of Arc | bowing | iron |
 | 59 | Caesar | yawning | jukebox |
 | 60 | Alexander | waving | kettle |
-| 61 | Genghis | pinching | lamp |
-| 62 | Zeus | stomping | map |
-| 63 | Thor | stacking | notebook |
-| 64 | Merlin | zipping | orb |
-| 65 | Sherlock | folding | pizza |
-| 66 | Dracula | twisting | quiver |
-| 67 | Batman | marching | ring |
-| 68 | Yoda | racing | sword |
-| 69 | Gandalf | snoring | trumpet |
-| 70 | Spock | pointing | tent |
-| 71 | Hermione | sliding | trunk |
-| 72 | Mario | flipping | vinyl |
-| 73 | Pikachu | raking | watch |
-| 74 | Lara Croft | inflating | axe |
+| 61 | A.J. Foyt | pinching | lamp |
+| 62 | Al Unser | stomping | map |
+| 63 | Billy Crystal | stacking | notebook |
+| 64 | Shigeru Miyamoto | zipping | orb |
+| 65 | Bobby Unser | folding | pizza |
+| 66 | Nat King Cole | driving | highway |
+| 67 | Tom Sneva | marching | ring |
+| 68 | Rick Mears | racing | car |
+| 69 | Buzz Aldrin | landing | moon |
+| 70 | Bobby Rahal | pointing | tent |
+| 71 | Whoopi Goldberg | sliding | trunk |
+| 72 | Josh Groban | flipping | vinyl |
+| 73 | Steve Martin | raking | watch |
+| 74 | Jimmy Fallon | inflating | axe |
 | 75 | Indiana Jones | hopping | bucket |
-| 76 | Neo | planting | camera |
-| 77 | Ripley | sprinkling | domino |
+| 76 | Ariana DeBose | planting | camera |
+| 77 | Chris Rock | sprinkling | domino |
 | 78 | Zorro | slapping | elevator |
-| 79 | Robin Hood | squeezing | fork |
-| 80 | Houdini | trapping | glove |
+| 79 | Ellen DeGeneres | squeezing | fork |
+| 80 | Jon Stewart | trapping | glove |
 | 81 | Buster Keaton | vaulting | hat |
 | 82 | Dolly Parton | whistling | island |
 | 83 | Ada Lovelace | gliding | joystick |
-| 84 | Turing | scrubbing | knot |
+| 84 | Juan Pablo Montoya | scrubbing | knot |
 | 85 | Jobs | tangling | lighthouse |
 | 86 | Gates | peeling | megaphone |
-| 87 | Musk | clapping | nest |
+| 87 | Neil Patrick Harris | clapping | nest |
 | 88 | Hemingway | tiptoeing | oven |
 | 89 | Tolkien | hurling | parachute |
-| 90 | Poe | polishing | radar |
-| 91 | Austen | bending | scissors |
+| 90 | Sam Hornish Jr. | polishing | radar |
+| 91 | Dario Franchitti | bending | scissors |
 | 92 | Orwell | wrestling | toaster |
-| 93 | Kafka | gargling | urn |
-| 94 | Julia Child | steering | vault |
+| 93 | Hélio Castroneves | gargling | urn |
+| 94 | Wanda Sykes | steering | vault |
 | 95 | Ramsay | plucking | windmill |
-| 96 | Bob Ross | mixing | yacht |
-| 97 | Buddha | hatching | zipper |
-| 98 | Confucius | floating | cassette |
+| 96 | Rory McIlroy | mixing | yacht |
+| 97 | Tony Kanaan | hatching | zipper |
+| 98 | Ryan Hunter-Reay | floating | cassette |
 | 99 | Socrates | exploding | spaceship |
 
 ---

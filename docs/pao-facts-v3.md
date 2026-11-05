@@ -8,6 +8,13 @@
 - No verified hook: 186 (P 33 / A 79 / O 74)
 - Numbers with no notes at all: 29, 37, 44, 49, 50, 51, 58, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 76, 77, 79, 80, 84, 87, 89, 90, 91, 93, 94, 96, 97, 98
 
+> **Status:** this file is the v3 research record and its vocabulary snapshot.
+> [`pao-facts-v4.md`](./pao-facts-v4.md) then filled the 35 blank numbers,
+> changed five object words (49 football, 51 planet, 66 highway, 68 car,
+> 69 moon), and brought total coverage to 126 notes across all 100 numbers.
+> The rejected/no-hook tables below describe the v3 words, not the current
+> vocabulary.
+
 ## Method
 
 Research was performed independently for each of the three roles across all 100 numbers (300 cells in total). For each cell, targeted primary and secondary sources were verified directly, including historical archives, official league and government registries, sports record books, technical standards (ISO, SI, ANSI), and documented biographies. Ages and intervals were strictly calculated from verified birth and event dates, and counts were verified as exact. Any candidates based on vague associations, cherry-picked years without age links, approximate counts ('about 30'), or unrelated biographical trivia were explicitly rejected and documented.

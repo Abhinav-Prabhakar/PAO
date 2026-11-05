@@ -13,10 +13,10 @@ export type NoteSet = Partial<Record<Role, Note>>
  * absent rather than filled with a guess. Letter/character-count notes are
  * wordplay and say so explicitly.
  *
- * Researched against the full 00–99 assignment table: 81 notes across 65
- * numbers (63 Person, 9 Action, 9 Object). The remaining 186 role/number
+ * Researched against the full 00–99 assignment table: 126 notes across all 100
+ * numbers (95 Person, 15 Action, 16 Object). The remaining 174 role/number
  * combinations were searched and recorded as having no verified hook in
- * docs/pao-facts-v3.md.
+ * docs/pao-facts-v3.md and docs/pao-facts-v4.md.
  */
 export const PAO_NOTES: Record<number, NoteSet> = {
   0: {
@@ -225,6 +225,12 @@ export const PAO_NOTES: Record<number, NoteSet> = {
       source: 'https://www.numismaticnews.net/world-coins/genius-newton-chased-counterfeiters',
     },
   },
+  29: {
+    P: {
+      text: 'warren g. harding was the 29th president of the united states',
+      source: 'https://en.wikipedia.org/wiki/Warren_G._Harding',
+    },
+  },
   30: {
     P: {
       text: 'leonardo moved to milan in 1482, aged 30',
@@ -271,6 +277,12 @@ export const PAO_NOTES: Record<number, NoteSet> = {
       source: 'https://en.wikipedia.org/wiki/Piano',
     },
   },
+  37: {
+    P: {
+      text: 'richard nixon was the 37th president of the united states',
+      source: 'https://en.wikipedia.org/wiki/Richard_Nixon',
+    },
+  },
   38: {
     P: {
       text: 'dylan was 38 when slow train coming was released in 1979',
@@ -311,6 +323,12 @@ export const PAO_NOTES: Record<number, NoteSet> = {
       source: 'https://en.wikipedia.org/wiki/A_Night_at_the_Opera_(Queen_album)',
     },
   },
+  44: {
+    P: {
+      text: 'barack obama was the 44th president of the united states',
+      source: 'https://en.wikipedia.org/wiki/Barack_Obama',
+    },
+  },
   45: {
     P: {
       text: 'bob marley was born on 6 february 1945',
@@ -341,6 +359,40 @@ export const PAO_NOTES: Record<number, NoteSet> = {
     P: {
       text: "gagarin's vostok 1 flight lasted 1 hour 48 minutes",
       source: 'https://www.fai.org/news/60th-anniversary-gagarin-space-flight',
+    },
+  },
+  49: {
+    P: {
+      text: 'joe montana won four super bowls with the san francisco 49ers',
+      source: 'https://en.wikipedia.org/wiki/Joe_Montana',
+    },
+    A: {
+      text: 'tom brady threw four touchdown passes in super bowl xlix',
+      source: 'https://en.wikipedia.org/wiki/Super_Bowl_XLIX',
+    },
+    O: {
+      text: 'super bowl xlix was played on 1 february 2015',
+      source: 'https://en.wikipedia.org/wiki/Super_Bowl_XLIX',
+    },
+  },
+  50: {
+    O: {
+      text: 'the czech 50-koruna crown coin depicts prague',
+      source: 'https://en.wikipedia.org/wiki/Czech_koruna',
+    },
+  },
+  51: {
+    P: {
+      text: 'michel mayor shared the 2019 nobel prize for 51 pegasi b',
+      source: 'https://en.wikipedia.org/wiki/Michel_Mayor',
+    },
+    A: {
+      text: '51 pegasi b was the first exoplanet found around a sun-like star',
+      source: 'https://en.wikipedia.org/wiki/51_Pegasi_b',
+    },
+    O: {
+      text: '51 pegasi b is a hot jupiter about 50 light-years away',
+      source: 'https://en.wikipedia.org/wiki/51_Pegasi_b',
     },
   },
   52: {
@@ -383,6 +435,12 @@ export const PAO_NOTES: Record<number, NoteSet> = {
       source: 'https://www.nps.gov/subjects/civilrights/sclc.htm',
     },
   },
+  58: {
+    O: {
+      text: 'iron-58 is a stable isotope making up 0.28% of natural iron',
+      source: 'https://en.wikipedia.org/wiki/Isotopes_of_iron',
+    },
+  },
   59: {
     P: {
       text: 'caesar was elected consul for 59 bc',
@@ -395,16 +453,148 @@ export const PAO_NOTES: Record<number, NoteSet> = {
       source: 'https://www.livius.org/sources/content/arrian/anabasis/alexander-in-the-gedrosian-desert/',
     },
   },
+  61: {
+    P: {
+      text: 'a.j. foyt won the 61st indianapolis 500 in 1977',
+      source: 'https://en.wikipedia.org/wiki/1977_Indianapolis_500',
+    },
+  },
+  62: {
+    P: {
+      text: 'al unser won the 62nd indianapolis 500 in 1978',
+      source: 'https://en.wikipedia.org/wiki/1978_Indianapolis_500',
+    },
+  },
+  63: {
+    P: {
+      text: 'billy crystal hosted the 63rd academy awards in 1991',
+      source: 'https://en.wikipedia.org/wiki/63rd_Academy_Awards',
+    },
+  },
+  64: {
+    P: {
+      text: 'shigeru miyamoto directed super mario 64',
+      source: 'https://en.wikipedia.org/wiki/Super_Mario_64',
+    },
+  },
+  65: {
+    P: {
+      text: 'bobby unser won the 65th indianapolis 500 in 1981',
+      source: 'https://en.wikipedia.org/wiki/1981_Indianapolis_500',
+    },
+  },
+  66: {
+    P: {
+      text: "nat king cole's trio recorded route 66 in 1946",
+      source: 'https://en.wikipedia.org/wiki/Route_66_(song)',
+    },
+    A: {
+      text: 'route 66 ran 2,448 miles from chicago to santa monica',
+      source: 'https://en.wikipedia.org/wiki/U.S._Route_66',
+    },
+    O: {
+      text: 'u.s. route 66 was established on 11 november 1926',
+      source: 'https://en.wikipedia.org/wiki/U.S._Route_66',
+    },
+  },
+  67: {
+    P: {
+      text: 'tom sneva won the 67th indianapolis 500 in 1983',
+      source: 'https://en.wikipedia.org/wiki/1983_Indianapolis_500',
+    },
+  },
+  68: {
+    P: {
+      text: 'rick mears won the 68th indianapolis 500 in 1984',
+      source: 'https://en.wikipedia.org/wiki/1984_Indianapolis_500',
+    },
+    A: {
+      text: 'rick mears set a 500-mile speed record at the 68th indy 500',
+      source: 'https://en.wikipedia.org/wiki/1984_Indianapolis_500',
+    },
+    O: {
+      text: 'the 1968 indy 500 was the last with a front-engine car',
+      source: 'https://en.wikipedia.org/wiki/1968_Indianapolis_500',
+    },
+  },
+  69: {
+    P: {
+      text: 'buzz aldrin became the second man to walk on the moon in 1969',
+      source: 'https://en.wikipedia.org/wiki/Buzz_Aldrin',
+    },
+    A: {
+      text: "apollo 11's lunar module eagle landed on 20 july 1969",
+      source: 'https://en.wikipedia.org/wiki/Apollo_11',
+    },
+    O: {
+      text: 'apollo 11 first landed humans on the moon in 1969',
+      source: 'https://en.wikipedia.org/wiki/Apollo_11',
+    },
+  },
+  70: {
+    P: {
+      text: 'bobby rahal won the 70th indianapolis 500 in 1986',
+      source: 'https://en.wikipedia.org/wiki/1986_Indianapolis_500',
+    },
+  },
+  71: {
+    P: {
+      text: 'whoopi goldberg hosted the 71st academy awards in 1999',
+      source: 'https://en.wikipedia.org/wiki/71st_Academy_Awards',
+    },
+  },
+  72: {
+    P: {
+      text: 'josh groban co-hosted the 72nd tony awards in 2018',
+      source: 'https://en.wikipedia.org/wiki/72nd_Tony_Awards',
+    },
+  },
+  73: {
+    P: {
+      text: 'steve martin hosted the 73rd academy awards in 2001',
+      source: 'https://en.wikipedia.org/wiki/73rd_Academy_Awards',
+    },
+  },
+  74: {
+    P: {
+      text: 'jimmy fallon hosted the 74th golden globe awards in 2017',
+      source: 'https://en.wikipedia.org/wiki/74th_Golden_Globe_Awards',
+    },
+  },
   75: {
     P: {
       text: 'wordplay: indiana has 7 letters, jones has 5, giving 75',
       source: 'https://en.wikipedia.org/wiki/Indiana_Jones',
     },
   },
+  76: {
+    P: {
+      text: 'ariana debose hosted the 76th tony awards in 2023',
+      source: 'https://en.wikipedia.org/wiki/76th_Tony_Awards',
+    },
+  },
+  77: {
+    P: {
+      text: 'chris rock hosted the 77th academy awards in 2005',
+      source: 'https://en.wikipedia.org/wiki/77th_Academy_Awards',
+    },
+  },
   78: {
     P: {
       text: "disney's zorro ran 78 episodes, 1957-59",
       source: 'https://en.wikipedia.org/wiki/Zorro_(1957_TV_series)',
+    },
+  },
+  79: {
+    P: {
+      text: 'ellen degeneres hosted the 79th academy awards in 2007',
+      source: 'https://en.wikipedia.org/wiki/79th_Academy_Awards',
+    },
+  },
+  80: {
+    P: {
+      text: 'jon stewart hosted the 80th academy awards in 2008',
+      source: 'https://en.wikipedia.org/wiki/80th_Academy_Awards',
     },
   },
   81: {
@@ -429,6 +619,12 @@ export const PAO_NOTES: Record<number, NoteSet> = {
       source: 'https://en.wikipedia.org/wiki/Gimli_Glider',
     },
   },
+  84: {
+    P: {
+      text: 'juan pablo montoya won the 84th indianapolis 500 in 2000',
+      source: 'https://en.wikipedia.org/wiki/2000_Indianapolis_500',
+    },
+  },
   85: {
     P: {
       text: 'stripped of duties and resigned from apple in 1985',
@@ -441,10 +637,34 @@ export const PAO_NOTES: Record<number, NoteSet> = {
       source: 'https://learn.microsoft.com/en-us/shows/history/history-of-microsoft-1986',
     },
   },
+  87: {
+    P: {
+      text: 'neil patrick harris hosted the 87th academy awards in 2015',
+      source: 'https://en.wikipedia.org/wiki/87th_Academy_Awards',
+    },
+  },
   88: {
     P: {
       text: '88 poems published 1979',
       source: 'https://www.jfklibrary.org/hemingway/works/books',
+    },
+  },
+  89: {
+    A: {
+      text: 'tipperary won the 1989 all-ireland senior hurling championship',
+      source: 'https://en.wikipedia.org/wiki/1989_All-Ireland_Senior_Hurling_Championship',
+    },
+  },
+  90: {
+    P: {
+      text: 'sam hornish jr. won the 90th indianapolis 500 in 2006',
+      source: 'https://en.wikipedia.org/wiki/2006_Indianapolis_500',
+    },
+  },
+  91: {
+    P: {
+      text: 'dario franchitti won the 91st indianapolis 500 in 2007',
+      source: 'https://en.wikipedia.org/wiki/2007_Indianapolis_500',
     },
   },
   92: {
@@ -453,10 +673,40 @@ export const PAO_NOTES: Record<number, NoteSet> = {
       source: 'https://en.wikipedia.org/wiki/List_of_World_Championships_medalists_in_freestyle_wrestling#92_kg',
     },
   },
+  93: {
+    P: {
+      text: 'hélio castroneves won the 93rd indianapolis 500 in 2009',
+      source: 'https://en.wikipedia.org/wiki/2009_Indianapolis_500',
+    },
+  },
+  94: {
+    P: {
+      text: 'wanda sykes co-hosted the 94th academy awards in 2022',
+      source: 'https://en.wikipedia.org/wiki/94th_Academy_Awards',
+    },
+  },
   95: {
     P: {
       text: 'the "95 inspired creations" ramsay tribute cookbook',
       source: 'https://www.amazon.com/Garnishing-Greatness-Inspired-Creations-Gordon-ebook/dp/B0CQ7DQZF4',
+    },
+  },
+  96: {
+    P: {
+      text: 'rory mcilroy won the 96th pga championship in 2014',
+      source: 'https://en.wikipedia.org/wiki/2014_PGA_Championship',
+    },
+  },
+  97: {
+    P: {
+      text: 'tony kanaan won the 97th indianapolis 500 in 2013',
+      source: 'https://en.wikipedia.org/wiki/2013_Indianapolis_500',
+    },
+  },
+  98: {
+    P: {
+      text: 'ryan hunter-reay won the 98th indianapolis 500 in 2014',
+      source: 'https://en.wikipedia.org/wiki/2014_Indianapolis_500',
     },
   },
   99: {
