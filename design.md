@@ -404,7 +404,7 @@ product tour.
 - Tokens: add new colors/spacing to `@theme` and `:root`, never inline hex.
 - Art generators: seed with the number, cache with a `Map` keyed by
   `role + n` (`cachedArt`). Cheap enough to render 200 frames.
-- Persist keys: `pao-digits`, `pao-trainer-v1`, `pao-codex-v1`. Read lazily and
+- Persist keys: `pao-digits`, `pao-trainer-v1`, `pao-codex-v1`, `pao-sound-v1`. Read lazily and
   defensively; the app must render with empty storage.
 - Components that render a list item use `memo` where re-renders are expensive
   (`Frame`). Keep callbacks stable with `useCallback`.
@@ -427,3 +427,80 @@ product tour.
 - [ ] Is the art deterministic for a given number?
 - [ ] Did you add any new animation to the reduced-motion block?
 - [ ] Do the empty, loading, correct, wrong, and summary states all exist?
+
+---
+
+## 16. Reel navigation, artifacts & delivery
+
+These surfaces extend the film metaphor rather than adding new chrome.
+
+### 16.1 Filmstrip
+
+- A scrubbable strip of **one cell per frame**, directly above the frame grid.
+- Cells are 12px tall, active 20px, amber; hover preview is cream at 55%,
+  inactive is cream at 14%; every tenth cell is slightly brighter as a ruler.
+- A 20px track height keeps the strip quiet. No labels on cells.
+- The strip has `role="slider"`, `aria-valuemin/max/now` and an
+  `aria-valuetext` that names the frame and its digits.
+- Click or drag jumps and scrolls the grid to that frame. Tracking follows the
+  frame nearest **45% of the viewport**, not the top edge.
+- Keyboard: `Home`, `End`, `←`, `→`. The meta line shows `NNN / NNN` and the
+  active frame's six digits in role colors.
+
+### 16.2 Permalinks
+
+- The reel lives in `location.hash`: `#314159265358…`. Only digits are read.
+- Write with `history.replaceState`, never push a history entry per keystroke.
+- Listen for `hashchange` so a pasted link or back/forward restores the reel.
+- Cap shared digits at `MAX` (1200 = 200 frames).
+- `⧉` copies the canonical URL; success is `✓` plus a polite live region.
+  Clipboard failure falls back to a hidden textarea.
+
+### 16.3 Artifacts
+
+- `⤓` downloads the reel as plain text: digits, PAO pairs, words, and the 13×7
+  art for each frame. It must be readable in any editor and pasteable anywhere.
+- `⎙` prints a **cream A4 contact sheet** from a hidden iframe:
+  four columns, one cell per frame, frame number, six role-colored digits, and
+  the P/A/O pair and word for each. Paper is `#f3ead6`, ink `#171008`,
+  role colors slightly darkened for print.
+- The sheet is generated from `contactSheetHtml`, not a screenshot. Add the
+  sheet footer (`00–99 · personal number memory`) and frame count mark.
+- Print CSS: `@page { size: A4 portrait; margin: 10mm }`, `break-inside: avoid`
+  on cells, exact color adjustment. Screen preview gets the same 10mm paper
+  margin so it looks like the printed page.
+
+### 16.4 Projector sound & keys
+
+- Sound is a synthesized two-click gate plus a low mechanical thump, built with
+  Web Audio; no audio files.
+- **Muted by default.** `♪` toggles it; `aria-pressed` and a struck-through
+  mark communicate state. Persist in `pao-sound-v1`.
+- Only synthesize on frame advance while the projector is open. Resume the
+  audio context on the first user gesture, never on page load.
+- Projector keys: `←`/`→` or `k`/`j` move, `Space` plays/pauses, `Esc` closes.
+- Global reel keys: `j`/`k` move and focus the frame, `Enter` opens the
+  projector, `Esc` blurs. Never intercept keys while a text input, textarea, or
+  contenteditable is focused.
+
+### 16.5 PWA & delivery
+
+- Build with `base: './'` and `vite-plugin-singlefile`, so `dist/index.html`
+  works from a GitHub Pages subpath and offline.
+- `public/` holds `manifest.webmanifest`, `sw.js`, `robots.txt`, `sitemap.xml`,
+  `og.png`, and icons.
+- Manifest `id` is unique to the app path (`./?app=pao-reel`), not a generic
+  origin root, so it cannot collide with another installed PWA.
+- Service worker is registered **production only**, caches the shell and icons,
+  and updates with `skipWaiting` + `clients.claim`. Never register it in dev.
+- No in-app install prompt, no install banner, no analytics.
+- Metadata: canonical URL, description, theme color, OG/Twitter card (1200×630),
+  apple-touch-icon, SVG + PNG favicons, and a `WebApplication` JSON-LD block.
+- Deploy from the `gh-pages` branch; do not require a CI check to publish.
+
+### 16.6 Repository conventions
+
+- Commit in logical slices: art, reel features, projector, metadata, docs.
+- After the remote exists, commit and push frequently.
+- The README is visual first: badges, screenshot tables, one code block per
+  idea, minimal prose.
