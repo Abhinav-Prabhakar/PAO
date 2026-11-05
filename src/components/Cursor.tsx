@@ -40,7 +40,7 @@ export function Cursor() {
       const t = e.target as HTMLElement | null
       if (!down) {
         if (t?.closest('textarea,input')) setState('text')
-        else if (t?.closest('button,a,[data-hover],[role=button]')) setState('link')
+        else if (t?.closest('button,a,[data-hover],[role=button],[role=slider]')) setState('link')
         else setState('idle')
       }
     }
@@ -68,7 +68,7 @@ export function Cursor() {
     const release = (e: MouseEvent) => {
       down = false
       const t = e.target as HTMLElement | null
-      setState(t?.closest('textarea,input') ? 'text' : t?.closest('button,a,[data-hover],[role=button]') ? 'link' : 'idle')
+      setState(t?.closest('textarea,input') ? 'text' : t?.closest('button,a,[data-hover],[role=button],[role=slider]') ? 'link' : 'idle')
     }
 
     const loop = () => {

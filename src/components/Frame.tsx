@@ -18,10 +18,17 @@ function FrameBase({ chunk, mode, onOpen }: Props) {
   return (
     <article
       data-hover
+      data-frame={chunk.index}
       role="button"
       tabIndex={0}
+      aria-label={`frame ${num}: ${chunk.digits} · ${wordOf(0)}, ${wordOf(1)}, ${wordOf(2)}`}
       onClick={() => onOpen(chunk.index)}
-      onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && onOpen(chunk.index)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onOpen(chunk.index)
+        }
+      }}
       className="frame group outline-none focus-visible:ring-1 focus-visible:ring-amber"
       style={{ animationDelay: `${(chunk.index % 12) * 55}ms` }}
     >
