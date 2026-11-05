@@ -1,5 +1,5 @@
 /* PAO — offline shell. The whole app is inlined into index.html. */
-const CACHE = 'pao-v3'
+const CACHE = 'pao-v4'
 const SHELL = [
   './',
   './index.html',
@@ -35,7 +35,7 @@ self.addEventListener('fetch', (event) => {
 
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request)
+      fetch(request, { cache: 'no-store' })
         .then((response) => {
           const copy = response.clone()
           caches.open(CACHE).then((cache) => cache.put('./index.html', copy))

@@ -13,7 +13,7 @@ createRoot(document.getElementById("root")!).render(
 if (import.meta.env.PROD && "serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register(new URL("sw.js", document.baseURI).href)
+      .register(new URL("sw.js?v=4", document.baseURI).href)
       .catch(() => {
         /* offline support is a bonus */
       });
