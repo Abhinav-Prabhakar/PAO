@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AsciiArt } from './AsciiArt'
 import { article, cachedArt, type Chunk } from '../lib/ascii'
 import { ROLE_ORDER, ROLES } from '../lib/roles'
+import { shutter, unlockSound } from '../lib/sound'
 
 interface Props {
   chunks: Chunk[]
@@ -18,18 +19,28 @@ function bar(value: number, width = 28) {
 export function Projector({ chunks, index, onIndex, onClose }: Props) {
   const [playing, setPlaying] = useState(false)
   const [small, setSmall] = useState(window.innerWidth < 700)
+  const [sound, setSound] = useState(() => localStorage.getItem('pao-sound-v1') === 'on')
+  const lastIndex = useRef(index)
   const chunk = chunks[index]
   const n = chunks.length
 
-  const go = (d: number) => onIndex((index + d + n) % n)
+  const go = (d: number) => {
+    unlockSound()
+    onIndex((index + d + n) % n)
+  }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
-      else if (e.key === 'ArrowRight') onIndex((index + 1) % n)
-      else if (e.key === 'ArrowLeft') onIndex((index - 1 + n) % n)
-      else if (e.key === ' ') {
+      else if (e.key === 'ArrowRight' || e.key === 'j') {
+        unlockSound()
+        onIndex((index + 1) % n)
+      } else if (e.key === 'ArrowLeft' || e.key === 'k') {
+        unlockSound()
+        onIndex((index - 1 + n) % n)
+      } else if (e.key === ' ') {
         e.preventDefault()
+        unlockSound()
         setPlaying((p) => !p)
       }
     }
@@ -49,6 +60,22 @@ export function Projector({ chunks, index, onIndex, onClose }: Props) {
     const id = setInterval(() => onIndex((index + 1) % n), 3600)
     return () => clearInterval(id)
   }, [playing, index, n, onIndex])
+
+  useEffect(() => {
+    if (lastIndex.current === index) return
+    lastIndex.current = index
+    if (sound) shutter()
+  }, [index, sound])
+
+  const toggleSound = () => {
+    const next = !sound
+    setSound(next)
+    localStorage.setItem('pao-sound-v1', next ? 'on' : 'off')
+    if (next) {
+      unlockSound()
+      shutter()
+    }
+  }
 
   if (!chunk) return null
   const words = [chunk.pairs[0].person, chunk.pairs[1].action, chunk.pairs[2].object]
@@ -111,11 +138,21 @@ export function Projector({ chunks, index, onIndex, onClose }: Props) {
           {bar(n > 1 ? index / (n - 1) : 1)}
         </pre>
         <div className="flex items-center gap-2">
-          <button className="btn" onClick={() => go(-1)} data-tip="prev · ←" aria-label="previous">◀</button>
+          <button className="btn" onClick={() => go(-1)} data-tip="prev · ←/k" aria-label="previous">◀</button>
           <button className="btn min-w-14" aria-pressed={playing} onClick={() => setPlaying((p) => !p)} data-tip="play · space" aria-label="play">
             {playing ? '❚❚' : '▶'}
           </button>
-          <button className="btn" onClick={() => go(1)} data-tip="next · →" aria-label="next">▶▶</button>
+          <button className="btn" onClick={() => go(1)} data-tip="next · →/j" aria-label="next">▶▶</button>
+          <span className="mx-1 h-4 w-px bg-cream/10" aria-hidden />
+          <button
+            className="btn"
+            aria-pressed={sound}
+            onClick={toggleSound}
+            data-tip={sound ? 'sound on' : 'sound off'}
+            aria-label={sound ? 'mute projector sound' : 'unmute projector sound'}
+          >
+            <span className="sound-mark" data-muted={!sound || undefined}>♪</span>
+          </button>
         </div>
       </div>
     </div>
