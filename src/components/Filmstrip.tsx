@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react'
+import { useCallback, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react'
 import type { Chunk } from '../lib/ascii'
 import { ROLE_ORDER } from '../lib/roles'
 
@@ -34,16 +34,7 @@ export function Filmstrip({ chunks, active, onSelect }: Props) {
   const [preview, setPreview] = useState<number | null>(null)
   const track = useRef<HTMLDivElement>(null)
   const dragging = useRef(false)
-  const raf = useRef(0)
-  const queued = useRef(0)
   const n = chunks.length
-
-  useEffect(
-    () => () => {
-      if (raf.current) cancelAnimationFrame(raf.current)
-    },
-    [],
-  )
 
   const indexAt = useCallback(
     (clientX: number) => {
@@ -56,38 +47,31 @@ export function Filmstrip({ chunks, active, onSelect }: Props) {
     [n],
   )
 
-  const queue = (i: number) => {
-    queued.current = i
-    if (raf.current) return
-    raf.current = requestAnimationFrame(() => {
-      raf.current = 0
-      onSelect(queued.current, false)
-    })
-  }
-
+  // Hover and drag only move the preview mark. The page scroll is committed
+  // once, on release, so scrubbing never yanks the reel out from under you.
   const down = (e: PointerEvent<HTMLDivElement>) => {
     if (!n) return
     e.preventDefault()
     track.current?.focus()
     track.current?.setPointerCapture(e.pointerId)
     dragging.current = true
-    const i = indexAt(e.clientX)
-    setPreview(i)
-    onSelect(i, false)
+    setPreview(indexAt(e.clientX))
   }
 
   const move = (e: PointerEvent<HTMLDivElement>) => {
-    const i = indexAt(e.clientX)
-    setPreview(i)
-    if (dragging.current) queue(i)
+    setPreview(indexAt(e.clientX))
   }
 
   const up = (e: PointerEvent<HTMLDivElement>) => {
     if (!dragging.current) return
     dragging.current = false
     const i = indexAt(e.clientX)
-    onSelect(i, false)
     setPreview(i)
+    onSelect(i)
+  }
+
+  const release = () => {
+    dragging.current = false
   }
 
   const leave = () => {
@@ -140,7 +124,8 @@ export function Filmstrip({ chunks, active, onSelect }: Props) {
         onPointerDown={down}
         onPointerMove={move}
         onPointerUp={up}
-        onPointerCancel={up}
+        onPointerCancel={release}
+        onLostPointerCapture={release}
         onPointerLeave={leave}
         onKeyDown={key}
       >

@@ -442,8 +442,9 @@ These surfaces extend the film metaphor rather than adding new chrome.
 - A 20px track height keeps the strip quiet. No labels on cells.
 - The strip has `role="slider"`, `aria-valuemin/max/now` and an
   `aria-valuetext` that names the frame and its digits.
-- Click or drag jumps and scrolls the grid to that frame. Tracking follows the
-  frame nearest **45% of the viewport**, not the top edge.
+- Hover and drag only move the preview mark. The grid scroll is committed once
+  on release, so scrubbing never yanks the page out from under the pointer.
+- Tracking follows the frame nearest **45% of the viewport**, not the top edge.
 - Keyboard: `Home`, `End`, `←`, `→`. The meta line shows `NNN / NNN` and the
   active frame's six digits in role colors.
 
