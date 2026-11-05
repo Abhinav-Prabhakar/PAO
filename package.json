@@ -1,7 +1,13 @@
 {
-  "name": "react-vite-tailwind",
+  "name": "pao-reel",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Turn digits into six-digit Person–Action–Object film frames, drawn in ASCII.",
+  "homepage": "https://abhinav-prabhakar.github.io/pao-reel/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhinav-Prabhakar/pao-reel.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

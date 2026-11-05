@@ -8,3 +8,14 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </StrictMode>
 );
+
+// Offline shell, production only.
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register(new URL("sw.js", document.baseURI).href)
+      .catch(() => {
+        /* offline support is a bonus */
+      });
+  });
+}
