@@ -512,7 +512,8 @@ These surfaces extend the film metaphor rather than adding new chrome.
 - No in-app install prompt, no install banner, no analytics.
 - Metadata: canonical URL, description, theme color, OG/Twitter card (1200×630),
   apple-touch-icon, SVG + PNG favicons, and a `WebApplication` JSON-LD block.
-- Deploy from the `gh-pages` branch; do not require a CI check to publish.
+- Deploy from `main` with the GitHub Pages workflow; the built `dist` is
+  published by Actions, not committed to a deploy branch.
 
 ### 16.7 Repository conventions
 

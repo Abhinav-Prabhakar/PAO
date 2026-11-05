@@ -121,8 +121,8 @@ and sound preference. Share the URL hash to share the reel.
 **Stack:** React 19 · TypeScript · Vite 7 · Tailwind 4 · `vite-plugin-singlefile` · zero runtime deps beyond React.<br/>
 **Type:** [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) variable font, self-hosted under the SIL Open Font License.
 
-**Deploy:** `main` is the source. `gh-pages` carries the built single file, served
-by GitHub Pages at [`/PAO/`](https://abhinav-prabhakar.github.io/PAO/).
+**Deploy:** `main` is the source and the only branch. GitHub Actions builds
+`dist` and publishes it to GitHub Pages at [`/PAO/`](https://abhinav-prabhakar.github.io/PAO/).
 
 ---
 
