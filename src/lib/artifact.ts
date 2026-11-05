@@ -97,6 +97,7 @@ export function contactSheetHtml(chunks: Chunk[], digits: string, source: string
   @page { size: A4 portrait; margin: 10mm; }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: #f3ead6; color: #171008; }
+  @media screen { body { padding: 10mm; } }
   body {
     font-family: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
     font-size: 8pt;
@@ -118,10 +119,10 @@ export function contactSheetHtml(chunks: Chunk[], digits: string, source: string
   .legend .p { color: #8a5a10; }
   .legend .a { color: #2f6f62; }
   .legend .o { color: #9c3b24; }
-  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5mm; }
   .cell {
     break-inside: avoid;
-    min-height: 24mm;
+    min-height: 22mm;
     padding: 2.4mm 2.6mm;
     border: 1px solid rgba(23, 16, 8, .34);
   }
