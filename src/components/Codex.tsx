@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { AsciiArt } from './AsciiArt'
 import { cachedArt, paoFor, personArt, type Chunk } from '../lib/ascii'
+import { noteFor } from '../lib/notes'
 import { ROLE_ORDER, ROLES } from '../lib/roles'
 
 const eyesOf = (n: number) => personArt(n)[2].replace(/[|]/g, '').trim().replace(/\s+/g, '_')
@@ -14,6 +15,7 @@ export function Codex({ chunks }: { chunks: Chunk[] }) {
   const [sel, setSel] = useState(() => chunks[0]?.pairs[0].n ?? 0)
   const pao = paoFor(sel)
   const words = [pao.person, pao.action, pao.object]
+  const note = noteFor(sel)
 
   return (
     <div className="fade-up flex flex-col gap-8 lg:flex-row lg:items-start">
@@ -63,6 +65,35 @@ export function Codex({ chunks }: { chunks: Chunk[] }) {
                 </div>
               </div>
             ))}
+            <div key={sel} className="fade-up border-t border-cream/10 pt-3" style={{ animationDelay: '270ms' }}>
+              {note ? (
+                <div className="flex items-start gap-2.5">
+                  <span
+                    className={`mt-0.5 shrink-0 text-[11px] leading-4 role-${note.role} opacity-80`}
+                    style={{ textShadow: 'none' }}
+                    data-tip={ROLES[note.role].name}
+                    aria-hidden="true"
+                  >
+                    {ROLES[note.role].glyph}
+                  </span>
+                  <p className="min-w-0 flex-1 text-[12px] leading-4 text-cream/70">
+                    {note.text}{' '}
+                    <a
+                      href={note.source}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label={`read the source for ${String(sel).padStart(2, '0')}`}
+                      data-tip="source"
+                      className="text-amber/60 transition-colors hover:text-amber"
+                    >
+                      ↗
+                    </a>
+                  </p>
+                </div>
+              ) : (
+                <p className="text-[12px] leading-4 text-cream/35">▸ no note on file</p>
+              )}
+            </div>
           </div>
           <div className="sprockets mt-1" />
         </div>
