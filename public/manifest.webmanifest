@@ -1,7 +1,7 @@
 {
   "id": "./?app=pao-reel",
-  "name": "PAO Reel — Number Memory Projector",
-  "short_name": "PAO Reel",
+  "name": "PAO",
+  "short_name": "PAO",
   "description": "Turn long digit strings into six-digit film frames: a Person, an Action, and an Object drawn in ASCII, with a recall trainer.",
   "start_url": "./?source=pwa",
   "scope": "./",
