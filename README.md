@@ -118,7 +118,8 @@ and sound preference. Share the URL hash to share the reel.
 | `src/components/Projector.tsx` | full-screen study and playback |
 | `design.md` | the visual contract: film language, color, motion, ASCII rules |
 
-**Stack:** React 19 · TypeScript · Vite 7 · Tailwind 4 · `vite-plugin-singlefile` · zero runtime deps beyond React.
+**Stack:** React 19 · TypeScript · Vite 7 · Tailwind 4 · `vite-plugin-singlefile` · zero runtime deps beyond React.<br/>
+**Type:** [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) variable font, self-hosted under the SIL Open Font License.
 
 **Deploy:** `main` is the source. `gh-pages` carries the built single file, served
 by GitHub Pages at [`/pao-reel/`](https://abhinav-prabhakar.github.io/pao-reel/).
