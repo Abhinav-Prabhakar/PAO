@@ -1,12 +1,12 @@
 {
-  "name": "pao-reel",
+  "name": "pao",
   "private": true,
   "version": "1.0.0",
   "description": "Turn digits into six-digit Person–Action–Object film frames, drawn in ASCII.",
-  "homepage": "https://abhinav-prabhakar.github.io/pao-reel/",
+  "homepage": "https://abhinav-prabhakar.github.io/PAO/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Abhinav-Prabhakar/pao-reel.git"
+    "url": "git+https://github.com/Abhinav-Prabhakar/PAO.git"
   },
   "type": "module",
   "scripts": {

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://abhinav-prabhakar.github.io/pao-reel/sitemap.xml
+Sitemap: https://abhinav-prabhakar.github.io/PAO/sitemap.xml

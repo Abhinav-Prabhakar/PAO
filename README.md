@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/og.png" alt="PAO Reel — turn digits into frames" width="920" />
+<img src="public/og.png" alt="PAO Reel — turn digits into frames" width="920" />
 
 # PAO Reel
 
@@ -9,8 +9,8 @@
 Six digits become a **Person**, an **Action**, and an **Object**, drawn in ASCII.<br/>
 A projector for pi, phone numbers, birthdays, and anything else worth keeping.
 
-[![Live](https://img.shields.io/badge/live-pao--reel-f0a93b?style=flat-square&logo=githubpages&logoColor=0d0a07)](https://abhinav-prabhakar.github.io/pao-reel/)
-[![PWA](https://img.shields.io/badge/PWA-offline-7fb5a6?style=flat-square)](https://abhinav-prabhakar.github.io/pao-reel/)
+[![Live](https://img.shields.io/badge/live-PAO-f0a93b?style=flat-square&logo=githubpages&logoColor=0d0a07)](https://abhinav-prabhakar.github.io/PAO/)
+[![PWA](https://img.shields.io/badge/PWA-offline-7fb5a6?style=flat-square)](https://abhinav-prabhakar.github.io/PAO/)
 [![React](https://img.shields.io/badge/React-19-e0674a?style=flat-square&logo=react&logoColor=0d0a07)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Vite](https://img.shields.io/badge/Vite-7-646cff?style=flat-square&logo=vite&logoColor=white)](https://vite.dev)
@@ -122,7 +122,7 @@ and sound preference. Share the URL hash to share the reel.
 **Type:** [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) variable font, self-hosted under the SIL Open Font License.
 
 **Deploy:** `main` is the source. `gh-pages` carries the built single file, served
-by GitHub Pages at [`/pao-reel/`](https://abhinav-prabhakar.github.io/pao-reel/).
+by GitHub Pages at [`/PAO/`](https://abhinav-prabhakar.github.io/PAO/).
 
 ---
 
